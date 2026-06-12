@@ -1,0 +1,47 @@
+name: smoke tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Stand up the stack
+        run: |
+          cp .env.example .env
+          docker compose up -d --build
+
+      - name: Wait for the app to come up
+        run: |
+          for i in $(seq 1 30); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' http://localhost:8080/items.php || true)
+            if [ "$code" = "200" ]; then
+              echo "app is up"
+              exit 0
+            fi
+            echo "attempt $i: got $code, retrying ..."
+            sleep 2
+          done
+          echo "app never came up"
+          docker compose logs
+          exit 1
+
+      - name: Run smoke tests
+        run: bash tests/smoke.sh http://localhost:8080
+
+      - name: Dump logs on failure
+        if: failure()
+        run: docker compose logs --tail 200
+
+      - name: Tear down
+        if: always()
+        run: docker compose down -v

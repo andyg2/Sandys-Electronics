@@ -1,0 +1,2450 @@
+{
+    "count": 197,
+    "items": [
+        {
+            "name": "Arduino Uno R3 (CH340 clone, XL)",
+            "category": "Board",
+            "subcategory": "AVR dev board",
+            "value": "ATmega328P + CH340",
+            "qty_total": 1,
+            "notes": "Generic Uno R3 clone, CH340 USB chip.",
+            "tags": [
+                "AVR dev board",
+                "Board"
+            ]
+        },
+        {
+            "name": "ESP32 NodeMCU-32S",
+            "category": "Board",
+            "subcategory": "ESP32 dev board",
+            "value": "ESP32-WROOM-32",
+            "qty_total": 1,
+            "notes": "Primary learning board.",
+            "tags": [
+                "Board",
+                "ESP32 dev board"
+            ]
+        },
+        {
+            "name": "Seeed XIAO ESP32-C3",
+            "category": "Board",
+            "subcategory": "ESP32 dev board",
+            "value": "ESP32-C3",
+            "qty_total": 1,
+            "notes": "Tiny; USB-C; 11 GPIO. Verified working at 192.168.88.30.",
+            "tags": [
+                "Board",
+                "ESP32 dev board"
+            ]
+        },
+        {
+            "name": "Orange Pi One (H3)",
+            "category": "Board",
+            "subcategory": "Single-board Linux",
+            "value": "Allwinner H3",
+            "qty_total": 1,
+            "notes": "Hub (planned). Not booted yet; needs 5V/2A barrel PSU and microSD.",
+            "tags": [
+                "Board",
+                "Single-board Linux"
+            ]
+        },
+        {
+            "name": "Jumper Wire F-M, 20pc",
+            "category": "Cable",
+            "subcategory": "DuPont jumper",
+            "value": "Female-Male, ~20cm",
+            "qty_total": 20,
+            "notes": null,
+            "tags": [
+                "Cable",
+                "DuPont jumper"
+            ]
+        },
+        {
+            "name": "Jumper Wire M-M, 40pc",
+            "category": "Cable",
+            "subcategory": "DuPont jumper",
+            "value": "Male-Male, ~20cm",
+            "qty_total": 40,
+            "notes": null,
+            "tags": [
+                "Cable",
+                "DuPont jumper"
+            ]
+        },
+        {
+            "name": "Capacitor 1000uF (electrolytic, mixed voltage)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "1000uF",
+            "qty_total": 13,
+            "notes": "From 300pc kit (23 values, 10uF-2200uF). Voltage rating unspecified; verify on physical sort.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 100uF (electrolytic, mixed voltage)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "100uF",
+            "qty_total": 13,
+            "notes": "From 300pc kit (23 values, 10uF-2200uF). Voltage rating unspecified; verify on physical sort.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 100uF 16V (electrolytic)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "100uF / 16V",
+            "qty_total": 13,
+            "notes": "From 190pc 15-spec kit.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 100uF 25V (electrolytic)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "100uF / 25V",
+            "qty_total": 13,
+            "notes": "From 190pc 15-spec kit.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 100uF 35V (electrolytic)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "100uF / 35V",
+            "qty_total": 13,
+            "notes": "From 190pc 15-spec kit.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 100uF 50V (electrolytic)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "100uF / 50V",
+            "qty_total": 13,
+            "notes": "From 190pc 15-spec kit.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 10uF (electrolytic, mixed voltage)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "10uF",
+            "qty_total": 13,
+            "notes": "From 300pc kit (23 values, 10uF-2200uF). Voltage rating unspecified; verify on physical sort.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 120uF (electrolytic, mixed voltage)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "120uF",
+            "qty_total": 13,
+            "notes": "From 300pc kit (23 values, 10uF-2200uF). Voltage rating unspecified; verify on physical sort.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 1500uF (electrolytic, mixed voltage)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "1500uF",
+            "qty_total": 13,
+            "notes": "From 300pc kit (23 values, 10uF-2200uF). Voltage rating unspecified; verify on physical sort.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 150uF (electrolytic, mixed voltage)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "150uF",
+            "qty_total": 13,
+            "notes": "From 300pc kit (23 values, 10uF-2200uF). Voltage rating unspecified; verify on physical sort.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 15uF (electrolytic, mixed voltage)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "15uF",
+            "qty_total": 13,
+            "notes": "From 300pc kit (23 values, 10uF-2200uF). Voltage rating unspecified; verify on physical sort.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 180uF (electrolytic, mixed voltage)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "180uF",
+            "qty_total": 13,
+            "notes": "From 300pc kit (23 values, 10uF-2200uF). Voltage rating unspecified; verify on physical sort.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 1uF 50V (electrolytic)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "1uF / 50V",
+            "qty_total": 13,
+            "notes": "From 190pc 15-spec kit.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 2200uF (electrolytic, mixed voltage)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "2200uF",
+            "qty_total": 13,
+            "notes": "From 300pc kit (23 values, 10uF-2200uF). Voltage rating unspecified; verify on physical sort.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 220uF (electrolytic, mixed voltage)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "220uF",
+            "qty_total": 13,
+            "notes": "From 300pc kit (23 values, 10uF-2200uF). Voltage rating unspecified; verify on physical sort.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 220uF 25V (electrolytic)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "220uF / 25V",
+            "qty_total": 13,
+            "notes": "From 190pc 15-spec kit.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 220uF 35V (electrolytic)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "220uF / 35V",
+            "qty_total": 13,
+            "notes": "From 190pc 15-spec kit.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 22uF (electrolytic, mixed voltage)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "22uF",
+            "qty_total": 13,
+            "notes": "From 300pc kit (23 values, 10uF-2200uF). Voltage rating unspecified; verify on physical sort.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 22uF 50V (electrolytic)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "22uF / 50V",
+            "qty_total": 13,
+            "notes": "From 190pc 15-spec kit.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 270uF (electrolytic, mixed voltage)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "270uF",
+            "qty_total": 13,
+            "notes": "From 300pc kit (23 values, 10uF-2200uF). Voltage rating unspecified; verify on physical sort.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 330uF (electrolytic, mixed voltage)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "330uF",
+            "qty_total": 13,
+            "notes": "From 300pc kit (23 values, 10uF-2200uF). Voltage rating unspecified; verify on physical sort.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 33uF (electrolytic, mixed voltage)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "33uF",
+            "qty_total": 13,
+            "notes": "From 300pc kit (23 values, 10uF-2200uF). Voltage rating unspecified; verify on physical sort.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 390uF (electrolytic, mixed voltage)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "390uF",
+            "qty_total": 13,
+            "notes": "From 300pc kit (23 values, 10uF-2200uF). Voltage rating unspecified; verify on physical sort.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 4.7uF 50V (electrolytic)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "4.7uF / 50V",
+            "qty_total": 13,
+            "notes": "From 190pc 15-spec kit.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 470uF (electrolytic, mixed voltage)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "470uF",
+            "qty_total": 13,
+            "notes": "From 300pc kit (23 values, 10uF-2200uF). Voltage rating unspecified; verify on physical sort.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 470uF 16V (electrolytic)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "470uF / 16V",
+            "qty_total": 13,
+            "notes": "From 190pc 15-spec kit.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 470uF 25V (electrolytic)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "470uF / 25V",
+            "qty_total": 13,
+            "notes": "From 190pc 15-spec kit.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 470uF 35V (electrolytic)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "470uF / 35V",
+            "qty_total": 13,
+            "notes": "From 190pc 15-spec kit.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 47uF (electrolytic, mixed voltage)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "47uF",
+            "qty_total": 13,
+            "notes": "From 300pc kit (23 values, 10uF-2200uF). Voltage rating unspecified; verify on physical sort.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 47uF 25V (electrolytic)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "47uF / 25V",
+            "qty_total": 13,
+            "notes": "From 190pc 15-spec kit.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 47uF 35V (electrolytic)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "47uF / 35V",
+            "qty_total": 13,
+            "notes": "From 190pc 15-spec kit.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 47uF 50V (electrolytic)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "47uF / 50V",
+            "qty_total": 13,
+            "notes": "From 190pc 15-spec kit.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 560uF (electrolytic, mixed voltage)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "560uF",
+            "qty_total": 13,
+            "notes": "From 300pc kit (23 values, 10uF-2200uF). Voltage rating unspecified; verify on physical sort.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 56uF (electrolytic, mixed voltage)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "56uF",
+            "qty_total": 13,
+            "notes": "From 300pc kit (23 values, 10uF-2200uF). Voltage rating unspecified; verify on physical sort.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 680uF (electrolytic, mixed voltage)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "680uF",
+            "qty_total": 13,
+            "notes": "From 300pc kit (23 values, 10uF-2200uF). Voltage rating unspecified; verify on physical sort.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 68uF (electrolytic, mixed voltage)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "68uF",
+            "qty_total": 13,
+            "notes": "From 300pc kit (23 values, 10uF-2200uF). Voltage rating unspecified; verify on physical sort.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 820uF (electrolytic, mixed voltage)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "820uF",
+            "qty_total": 13,
+            "notes": "From 300pc kit (23 values, 10uF-2200uF). Voltage rating unspecified; verify on physical sort.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "Capacitor 82uF (electrolytic, mixed voltage)",
+            "category": "Capacitor",
+            "subcategory": "Electrolytic, through-hole",
+            "value": "82uF",
+            "qty_total": 13,
+            "notes": "From 300pc kit (23 values, 10uF-2200uF). Voltage rating unspecified; verify on physical sort.",
+            "tags": [
+                "Capacitor",
+                "Electrolytic",
+                "through-hole"
+            ]
+        },
+        {
+            "name": "LED 5mm Blue",
+            "category": "Component",
+            "subcategory": "LED, 5mm through-hole",
+            "value": "Blue",
+            "qty_total": 5,
+            "notes": null,
+            "tags": [
+                "5mm through-hole",
+                "Component",
+                "LED"
+            ]
+        },
+        {
+            "name": "LED 5mm Green",
+            "category": "Component",
+            "subcategory": "LED, 5mm through-hole",
+            "value": "Green",
+            "qty_total": 5,
+            "notes": null,
+            "tags": [
+                "5mm through-hole",
+                "Component",
+                "LED"
+            ]
+        },
+        {
+            "name": "LED 5mm Red",
+            "category": "Component",
+            "subcategory": "LED, 5mm through-hole",
+            "value": "Red",
+            "qty_total": 5,
+            "notes": null,
+            "tags": [
+                "5mm through-hole",
+                "Component",
+                "LED"
+            ]
+        },
+        {
+            "name": "LED 5mm Yellow",
+            "category": "Component",
+            "subcategory": "LED, 5mm through-hole",
+            "value": "Yellow",
+            "qty_total": 5,
+            "notes": null,
+            "tags": [
+                "5mm through-hole",
+                "Component",
+                "LED"
+            ]
+        },
+        {
+            "name": "Pin Header 1x40 Female (2.54mm)",
+            "category": "Connector",
+            "subcategory": "Pin header, 2.54mm",
+            "value": "1x40 female",
+            "qty_total": 11,
+            "notes": "From 22pc GUDYIR mixed pack; verify M/F split.",
+            "tags": [
+                "2.54mm",
+                "Connector",
+                "Pin header"
+            ]
+        },
+        {
+            "name": "Pin Header 1x40 Male Breakaway (2.54mm)",
+            "category": "Connector",
+            "subcategory": "Pin header, 2.54mm",
+            "value": "1x40 male",
+            "qty_total": 11,
+            "notes": "From 22pc GUDYIR mixed pack; verify M/F split.",
+            "tags": [
+                "2.54mm",
+                "Connector",
+                "Pin header"
+            ]
+        },
+        {
+            "name": "USB-C Female Chassis Connector (2P pigtail)",
+            "category": "Connector",
+            "subcategory": "USB-C",
+            "value": "2-pin pigtail, 3A",
+            "qty_total": 15,
+            "notes": "Dealikee; flat open-end bare-wire.",
+            "tags": [
+                "Connector",
+                "USB-C"
+            ]
+        },
+        {
+            "name": "LM386 Audio Power Amp",
+            "category": "IC",
+            "subcategory": "Audio amplifier",
+            "value": "LM386",
+            "qty_total": 13,
+            "notes": "XL IC kit (5) + 85pc set (~8).",
+            "tags": [
+                "Audio amplifier",
+                "IC"
+            ]
+        },
+        {
+            "name": "TDA2030A Audio Power Amp",
+            "category": "IC",
+            "subcategory": "Audio amplifier",
+            "value": "TDA2030A",
+            "qty_total": 2,
+            "notes": "XL IC kit.",
+            "tags": [
+                "Audio amplifier",
+                "IC"
+            ]
+        },
+        {
+            "name": "TDA2822D Audio Power Amp",
+            "category": "IC",
+            "subcategory": "Audio amplifier",
+            "value": "TDA2822D",
+            "qty_total": 5,
+            "notes": "XL IC kit.",
+            "tags": [
+                "Audio amplifier",
+                "IC"
+            ]
+        },
+        {
+            "name": "ICL7660S Charge-pump Inverter",
+            "category": "IC",
+            "subcategory": "Charge-pump regulator",
+            "value": "ICL7660S",
+            "qty_total": 2,
+            "notes": "XL IC kit.",
+            "tags": [
+                "Charge-pump regulator",
+                "IC"
+            ]
+        },
+        {
+            "name": "LM339 Comparator (quad)",
+            "category": "IC",
+            "subcategory": "Comparator",
+            "value": "LM339",
+            "qty_total": 10,
+            "notes": "XL IC kit.",
+            "tags": [
+                "Comparator",
+                "IC"
+            ]
+        },
+        {
+            "name": "LM393 Comparator (dual)",
+            "category": "IC",
+            "subcategory": "Comparator",
+            "value": "LM393",
+            "qty_total": 19,
+            "notes": "XL IC kit (10) + 85pc set (~9).",
+            "tags": [
+                "Comparator",
+                "IC"
+            ]
+        },
+        {
+            "name": "ULN2003AN Darlington Array (7-ch)",
+            "category": "IC",
+            "subcategory": "Darlington array",
+            "value": "ULN2003AN",
+            "qty_total": 13,
+            "notes": "XL IC kit (5) + 85pc set (~8).",
+            "tags": [
+                "Darlington array",
+                "IC"
+            ]
+        },
+        {
+            "name": "ULN2803APG Darlington Array (8-ch)",
+            "category": "IC",
+            "subcategory": "Darlington array",
+            "value": "ULN2803APG",
+            "qty_total": 14,
+            "notes": "XL IC kit (5) + 85pc set (~9).",
+            "tags": [
+                "Darlington array",
+                "IC"
+            ]
+        },
+        {
+            "name": "LM324 Op-Amp (quad)",
+            "category": "IC",
+            "subcategory": "Op-amp",
+            "value": "LM324",
+            "qty_total": 19,
+            "notes": "XL IC kit (10) + 85pc set (~9).",
+            "tags": [
+                "IC",
+                "Op-amp"
+            ]
+        },
+        {
+            "name": "LM358 Op-Amp (dual)",
+            "category": "IC",
+            "subcategory": "Op-amp",
+            "value": "LM358",
+            "qty_total": 17,
+            "notes": "XL IC kit (10) + 85pc set (~7).",
+            "tags": [
+                "IC",
+                "Op-amp"
+            ]
+        },
+        {
+            "name": "UA741 Op-Amp",
+            "category": "IC",
+            "subcategory": "Op-amp",
+            "value": "UA741",
+            "qty_total": 9,
+            "notes": "85pc set.",
+            "tags": [
+                "IC",
+                "Op-amp"
+            ]
+        },
+        {
+            "name": "JRC4558 Op-Amp",
+            "category": "IC",
+            "subcategory": "Op-amp (audio)",
+            "value": "JRC4558",
+            "qty_total": 10,
+            "notes": "XL IC kit.",
+            "tags": [
+                "audio",
+                "IC",
+                "Op-amp"
+            ]
+        },
+        {
+            "name": "NE5532 Op-Amp (audio dual)",
+            "category": "IC",
+            "subcategory": "Op-amp (audio)",
+            "value": "NE5532",
+            "qty_total": 13,
+            "notes": "XL IC kit (5) + 85pc set (~8).",
+            "tags": [
+                "audio",
+                "IC",
+                "Op-amp"
+            ]
+        },
+        {
+            "name": "PC817 Optocoupler",
+            "category": "IC",
+            "subcategory": "Optocoupler",
+            "value": "PC817",
+            "qty_total": 14,
+            "notes": "XL IC kit (~5) + 85pc set (~9). Verify.",
+            "tags": [
+                "IC",
+                "Optocoupler"
+            ]
+        },
+        {
+            "name": "UC3842AN PWM Controller",
+            "category": "IC",
+            "subcategory": "PWM controller",
+            "value": "UC3842AN",
+            "qty_total": 5,
+            "notes": "XL IC kit.",
+            "tags": [
+                "IC",
+                "PWM controller"
+            ]
+        },
+        {
+            "name": "UC3843AN PWM Controller",
+            "category": "IC",
+            "subcategory": "PWM controller",
+            "value": "UC3843AN",
+            "qty_total": 5,
+            "notes": "XL IC kit.",
+            "tags": [
+                "IC",
+                "PWM controller"
+            ]
+        },
+        {
+            "name": "NE555 Timer IC",
+            "category": "IC",
+            "subcategory": "Timer",
+            "value": "NE555",
+            "qty_total": 14,
+            "notes": "XL IC kit (~5) + 85pc set (~9). Verify.",
+            "tags": [
+                "IC",
+                "Timer"
+            ]
+        },
+        {
+            "name": "Breadboard 4.5x9.5cm (~400 tie-points)",
+            "category": "Module",
+            "subcategory": "Breadboard",
+            "value": "Half-size",
+            "qty_total": 2,
+            "notes": "Solderless prototyping.",
+            "tags": [
+                "Breadboard"
+            ]
+        },
+        {
+            "name": "LCD 1602 with I2C Backpack",
+            "category": "Module",
+            "subcategory": "Character LCD + I2C",
+            "value": "HD44780 + PCF8574",
+            "qty_total": 1,
+            "notes": "16x2 character LCD; I2C address usually 0x27 or 0x3F.",
+            "tags": [
+                "Character LCD + I2C",
+                "Module"
+            ]
+        },
+        {
+            "name": "Joystick Module (2-axis + button)",
+            "category": "Module",
+            "subcategory": "Input / joystick",
+            "value": "KY-023",
+            "qty_total": 1,
+            "notes": "Analog X/Y + push-button switch.",
+            "tags": [
+                "Input",
+                "joystick",
+                "Module"
+            ]
+        },
+        {
+            "name": "KY-008 Red Laser Module (650nm)",
+            "category": "Module",
+            "subcategory": "Laser emitter",
+            "value": "KY-008",
+            "qty_total": 1,
+            "notes": null,
+            "tags": [
+                "Laser emitter",
+                "Module"
+            ]
+        },
+        {
+            "name": "8x8 LED Dot-matrix Display (red)",
+            "category": "Module",
+            "subcategory": "LED matrix",
+            "value": "1088AS or similar",
+            "qty_total": 1,
+            "notes": "May need a MAX7219 driver.",
+            "tags": [
+                "LED matrix",
+                "Module"
+            ]
+        },
+        {
+            "name": "4-digit 7-segment Display Module",
+            "category": "Module",
+            "subcategory": "Numeric display",
+            "value": "(likely TM1637)",
+            "qty_total": 1,
+            "notes": null,
+            "tags": [
+                "Module",
+                "Numeric display"
+            ]
+        },
+        {
+            "name": "0.96\" OLED Display (I2C)",
+            "category": "Module",
+            "subcategory": "OLED display",
+            "value": "SSD1306, 128x64",
+            "qty_total": 1,
+            "notes": "I2C, monochrome.",
+            "tags": [
+                "Module",
+                "OLED display"
+            ]
+        },
+        {
+            "name": "18650 Charger / Protection Board (TP4056, USB-C)",
+            "category": "Module",
+            "subcategory": "Power / charger",
+            "value": "TP4056 USB-C",
+            "qty_total": 5,
+            "notes": "Single-cell 3.7V Li-ion charge + discharge protection.",
+            "tags": [
+                "charger",
+                "Module",
+                "Power"
+            ]
+        },
+        {
+            "name": "Double-Sided Prototype PCB (assorted sizes)",
+            "category": "Module",
+            "subcategory": "Prototype PCB",
+            "value": "5 sizes, mixed",
+            "qty_total": 10,
+            "notes": "Through-hole universal proto boards.",
+            "tags": [
+                "Prototype PCB"
+            ]
+        },
+        {
+            "name": "1-channel Relay Module",
+            "category": "Module",
+            "subcategory": "Relay",
+            "value": "SRD-05VDC-SL-C x1",
+            "qty_total": 1,
+            "notes": "Single relay; same Songle family as the 2-channel board.",
+            "tags": [
+                "Module",
+                "Relay"
+            ]
+        },
+        {
+            "name": "2-channel Songle relay module",
+            "category": "Module",
+            "subcategory": "Relay, optocoupler-isolated",
+            "value": "SRD-05VDC-SL-C x2",
+            "qty_total": 1,
+            "notes": "Active-LOW (low-level trigger). JDVcc-Vcc jumper currently in place.",
+            "tags": [
+                "Module",
+                "optocoupler-isolated",
+                "Relay"
+            ]
+        },
+        {
+            "name": "SG90 Servo (9g micro)",
+            "category": "Module",
+            "subcategory": "Servo",
+            "value": "SG90",
+            "qty_total": 1,
+            "notes": "180-degree micro servo.",
+            "tags": [
+                "Module",
+                "Servo"
+            ]
+        },
+        {
+            "name": "Resistor 1.5K (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "1.5K",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 1.5M (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "1.5M",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 1.8M (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "1.8M",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 100K (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "100K",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 100R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "100R",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 10K (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "10K",
+            "qty_total": 20,
+            "notes": "From 640pc kit. Includes 10x extra from the small line-53 pack.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 10M (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "10M",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 10R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "10R",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 120R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "120R",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 150K (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "150K",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 150R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "150R",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 15K (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "15K",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 15R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "15R",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 180K (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "180K",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 180R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "180R",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 1K (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "1K",
+            "qty_total": 20,
+            "notes": "From 640pc kit. Includes 10x extra from the small line-53 pack.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 1M (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "1M",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 1R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "1R",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 2.2K (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "2.2K",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 2.2M (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "2.2M",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 2.2R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "2.2R",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 220K (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "220K",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 220R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "220R",
+            "qty_total": 20,
+            "notes": "From 640pc kit. Includes 10x extra from the small line-53 pack.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 22K (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "22K",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 22R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "22R",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 270R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "270R",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 27R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "27R",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 2M (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "2M",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 3.9K (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "3.9K",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 330K (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "330K",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 330R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "330R",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 33K (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "33K",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 33R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "33R",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 390R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "390R",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 39K (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "39K",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 39R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "39R",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 3K (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "3K",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 4.3M (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "4.3M",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 4.7K (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "4.7K",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 4.7R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "4.7R",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 470K (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "470K",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 470R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "470R",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 47K (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "47K",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 47R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "47R",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 5.6K (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "5.6K",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 5.6R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "5.6R",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 510R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "510R",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 560K (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "560K",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 56K (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "56K",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 56R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "56R",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 6.8K (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "6.8K",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 680K (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "680K",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 680R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "680R",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 68K (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "68K",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 68R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "68R",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 7.5K (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "7.5K",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 7.5R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "7.5R",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 75K (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "75K",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 75R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "75R",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 8.2K (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "8.2K",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 8.2R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "8.2R",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 820R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "820R",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 82K (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "82K",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "Resistor 82R (1/8W 1%)",
+            "category": "Resistor",
+            "subcategory": "1/8W 1% metal film",
+            "value": "82R",
+            "qty_total": 10,
+            "notes": "From 640pc kit.",
+            "tags": [
+                "1/8W 1% metal film",
+                "Resistor"
+            ]
+        },
+        {
+            "name": "KY-037 Microphone Sensor",
+            "category": "Sensor",
+            "subcategory": "Audio / microphone",
+            "value": "KY-037",
+            "qty_total": 1,
+            "notes": "High-sensitivity electret + LM393 comparator.",
+            "tags": [
+                "audio",
+                "microphone",
+                "Sensor"
+            ]
+        },
+        {
+            "name": "VL53L0X ToF Distance Sensor (GY-VL53L0XV2 compatible)",
+            "category": "Sensor",
+            "subcategory": "Distance / ToF",
+            "value": "VL53L0X",
+            "qty_total": 2,
+            "notes": "I2C, 940nm laser. D-FLIFE.",
+            "tags": [
+                "Distance",
+                "Sensor",
+                "ToF"
+            ]
+        },
+        {
+            "name": "HC-SR04 Ultrasonic Distance Sensor",
+            "category": "Sensor",
+            "subcategory": "Distance / ultrasonic",
+            "value": "HC-SR04",
+            "qty_total": 2,
+            "notes": "Lines 28 + 41 (two orders).",
+            "tags": [
+                "Distance",
+                "Sensor",
+                "ultrasonic"
+            ]
+        },
+        {
+            "name": "KY-003 Hall Switch Sensor",
+            "category": "Sensor",
+            "subcategory": "Hall (digital)",
+            "value": "KY-003",
+            "qty_total": 1,
+            "notes": null,
+            "tags": [
+                "digital",
+                "Hall",
+                "Sensor"
+            ]
+        },
+        {
+            "name": "KY-024 Linear Magnetic Hall Sensor",
+            "category": "Sensor",
+            "subcategory": "Hall (linear)",
+            "value": "KY-024",
+            "qty_total": 1,
+            "notes": null,
+            "tags": [
+                "Hall",
+                "Linear",
+                "Sensor"
+            ]
+        },
+        {
+            "name": "MPU-6500 6-Axis IMU (GY-6500)",
+            "category": "Sensor",
+            "subcategory": "IMU (gyro + accel)",
+            "value": "MPU-6500",
+            "qty_total": 2,
+            "notes": "I2C/SPI, low power.",
+            "tags": [
+                "gyro + accel",
+                "IMU",
+                "Sensor"
+            ]
+        },
+        {
+            "name": "KY-022 IR Receiver Module",
+            "category": "Sensor",
+            "subcategory": "IR receiver (~38kHz)",
+            "value": "KY-022",
+            "qty_total": 1,
+            "notes": "For decoding TV-remote-style signals.",
+            "tags": [
+                "~38kHz",
+                "IR receiver",
+                "Sensor"
+            ]
+        },
+        {
+            "name": "IR Obstacle Avoidance Module",
+            "category": "Sensor",
+            "subcategory": "IR reflective",
+            "value": "FC-51 (generic)",
+            "qty_total": 2,
+            "notes": "Lines 33 + 52 (two orders).",
+            "tags": [
+                "IR reflective",
+                "Sensor"
+            ]
+        },
+        {
+            "name": "TCRT5000 IR Reflective Tracking Module",
+            "category": "Sensor",
+            "subcategory": "IR reflective",
+            "value": "TCRT5000",
+            "qty_total": 1,
+            "notes": "Line-following / object presence.",
+            "tags": [
+                "IR reflective",
+                "Sensor"
+            ]
+        },
+        {
+            "name": "KY-018 Photoresistor Module",
+            "category": "Sensor",
+            "subcategory": "Light (LDR)",
+            "value": "KY-018",
+            "qty_total": 1,
+            "notes": "Line 32. See note on the other photoresistor entry.",
+            "tags": [
+                "LDR",
+                "Light",
+                "Sensor"
+            ]
+        },
+        {
+            "name": "Photoresistor Module (LM393 comparator)",
+            "category": "Sensor",
+            "subcategory": "Light (LDR)",
+            "value": "LM393 + LDR",
+            "qty_total": 1,
+            "notes": "Line 20. Likely the same module as KY-018 below; merge after physical inspection.",
+            "tags": [
+                "LDR",
+                "Light",
+                "Sensor"
+            ]
+        },
+        {
+            "name": "Soil Moisture Sensor",
+            "category": "Sensor",
+            "subcategory": "Moisture",
+            "value": "(generic resistive)",
+            "qty_total": 2,
+            "notes": "Lines 21 + 54 (two orders).",
+            "tags": [
+                "Moisture",
+                "Sensor"
+            ]
+        },
+        {
+            "name": "Optical Slot / Speed Sensor",
+            "category": "Sensor",
+            "subcategory": "Optical slot (encoder)",
+            "value": "(generic)",
+            "qty_total": 1,
+            "notes": null,
+            "tags": [
+                "encoder",
+                "Optical slot",
+                "Sensor"
+            ]
+        },
+        {
+            "name": "HC-SR501 PIR Motion Sensor",
+            "category": "Sensor",
+            "subcategory": "PIR motion",
+            "value": "HC-SR501",
+            "qty_total": 2,
+            "notes": "Lines 18 ('SR501') + 45 ('HC-SR501').",
+            "tags": [
+                "PIR motion",
+                "Sensor"
+            ]
+        },
+        {
+            "name": "HC-SR505 Mini PIR Motion Sensor",
+            "category": "Sensor",
+            "subcategory": "PIR motion",
+            "value": "HC-SR505",
+            "qty_total": 2,
+            "notes": "Mini variant; distinct from the larger HC-SR501.",
+            "tags": [
+                "PIR motion",
+                "Sensor"
+            ]
+        },
+        {
+            "name": "GY-BMP280 Barometric Pressure Sensor",
+            "category": "Sensor",
+            "subcategory": "Pressure / altitude",
+            "value": "BMP280",
+            "qty_total": 1,
+            "notes": "I2C; also reads temperature.",
+            "tags": [
+                "altitude",
+                "Pressure",
+                "Sensor"
+            ]
+        },
+        {
+            "name": "DHT11 Temperature & Humidity Sensor",
+            "category": "Sensor",
+            "subcategory": "Temperature + humidity",
+            "value": "DHT11",
+            "qty_total": 2,
+            "notes": "Lines 17 + 51 (two orders).",
+            "tags": [
+                "Sensor",
+                "Temperature + humidity"
+            ]
+        },
+        {
+            "name": "Angle / Tilt Switch (ball)",
+            "category": "Sensor",
+            "subcategory": "Tilt switch",
+            "value": "(generic)",
+            "qty_total": 1,
+            "notes": null,
+            "tags": [
+                "Sensor",
+                "Tilt switch"
+            ]
+        },
+        {
+            "name": "TTP223B Capacitive Touch Module",
+            "category": "Sensor",
+            "subcategory": "Touch",
+            "value": "TTP223B",
+            "qty_total": 5,
+            "notes": "Line 3 (3x) + lines 23 and 50 (1x each).",
+            "tags": [
+                "Sensor",
+                "Touch"
+            ]
+        },
+        {
+            "name": "SW-420 Vibration Switch Module",
+            "category": "Sensor",
+            "subcategory": "Vibration / tilt",
+            "value": "SW-420",
+            "qty_total": 1,
+            "notes": null,
+            "tags": [
+                "Sensor",
+                "tilt",
+                "Vibration"
+            ]
+        },
+        {
+            "name": "Voltage Sensor Module (0-25V divider)",
+            "category": "Sensor",
+            "subcategory": "Voltage divider",
+            "value": "(generic)",
+            "qty_total": 1,
+            "notes": "Resistive divider for ADC measurement up to ~25V.",
+            "tags": [
+                "Sensor",
+                "Voltage divider"
+            ]
+        },
+        {
+            "name": "Raindrop Sensor",
+            "category": "Sensor",
+            "subcategory": "Water (resistive comb)",
+            "value": "(generic)",
+            "qty_total": 1,
+            "notes": null,
+            "tags": [
+                "resistive comb",
+                "Sensor",
+                "Water"
+            ]
+        },
+        {
+            "name": "Water Level Sensor",
+            "category": "Sensor",
+            "subcategory": "Water level (resistive comb)",
+            "value": "(generic)",
+            "qty_total": 1,
+            "notes": null,
+            "tags": [
+                "resistive comb",
+                "Sensor",
+                "Water level"
+            ]
+        },
+        {
+            "name": "Tactile Push-button Switch 3x3.5x2mm (4-pin, black)",
+            "category": "Switch",
+            "subcategory": "Tactile push-button",
+            "value": "3x3.5x2mm (4-pin, black)",
+            "qty_total": 25,
+            "notes": "From 250pc kit.",
+            "tags": [
+                "Switch",
+                "Tactile push-button"
+            ]
+        },
+        {
+            "name": "Tactile Push-button Switch 3x4x2.5mm (binding feet)",
+            "category": "Switch",
+            "subcategory": "Tactile push-button",
+            "value": "3x4x2.5mm (binding feet)",
+            "qty_total": 25,
+            "notes": "From 250pc kit.",
+            "tags": [
+                "Switch",
+                "Tactile push-button"
+            ]
+        },
+        {
+            "name": "Tactile Push-button Switch 3x4x2.5mm (white)",
+            "category": "Switch",
+            "subcategory": "Tactile push-button",
+            "value": "3x4x2.5mm (white)",
+            "qty_total": 25,
+            "notes": "From 250pc kit.",
+            "tags": [
+                "Switch",
+                "Tactile push-button"
+            ]
+        },
+        {
+            "name": "Tactile Push-button Switch 3x4x2mm (2-pin, yellow)",
+            "category": "Switch",
+            "subcategory": "Tactile push-button",
+            "value": "3x4x2mm (2-pin, yellow)",
+            "qty_total": 25,
+            "notes": "From 250pc kit.",
+            "tags": [
+                "Switch",
+                "Tactile push-button"
+            ]
+        },
+        {
+            "name": "Tactile Push-button Switch 3x6x2.5mm (2-pin, black/white)",
+            "category": "Switch",
+            "subcategory": "Tactile push-button",
+            "value": "3x6x2.5mm (2-pin, black/white)",
+            "qty_total": 25,
+            "notes": "From 250pc kit.",
+            "tags": [
+                "Switch",
+                "Tactile push-button"
+            ]
+        },
+        {
+            "name": "Tactile Push-button Switch 3x6x3.1mm (4-pin, black/red)",
+            "category": "Switch",
+            "subcategory": "Tactile push-button",
+            "value": "3x6x3.1mm (4-pin, black/red)",
+            "qty_total": 25,
+            "notes": "From 250pc kit.",
+            "tags": [
+                "Switch",
+                "Tactile push-button"
+            ]
+        },
+        {
+            "name": "Tactile Push-button Switch 3x6x4.3mm (white pin)",
+            "category": "Switch",
+            "subcategory": "Tactile push-button",
+            "value": "3x6x4.3mm (white pin)",
+            "qty_total": 25,
+            "notes": "From 250pc kit.",
+            "tags": [
+                "Switch",
+                "Tactile push-button"
+            ]
+        },
+        {
+            "name": "Tactile Push-button Switch 3x6x5mm (white pin)",
+            "category": "Switch",
+            "subcategory": "Tactile push-button",
+            "value": "3x6x5mm (white pin)",
+            "qty_total": 25,
+            "notes": "From 250pc kit.",
+            "tags": [
+                "Switch",
+                "Tactile push-button"
+            ]
+        },
+        {
+            "name": "Tactile Push-button Switch 4x4x0.8mm (4-pin, black/yellow)",
+            "category": "Switch",
+            "subcategory": "Tactile push-button",
+            "value": "4x4x0.8mm (4-pin, black/yellow)",
+            "qty_total": 25,
+            "notes": "From 250pc kit.",
+            "tags": [
+                "Switch",
+                "Tactile push-button"
+            ]
+        },
+        {
+            "name": "Tactile Push-button Switch 4x4x1.5mm (4-pin, black/yellow)",
+            "category": "Switch",
+            "subcategory": "Tactile push-button",
+            "value": "4x4x1.5mm (4-pin, black/yellow)",
+            "qty_total": 25,
+            "notes": "From 250pc kit.",
+            "tags": [
+                "Switch",
+                "Tactile push-button"
+            ]
+        },
+        {
+            "name": "BC327 BJT (TO-92)",
+            "category": "Transistor",
+            "subcategory": "BJT, TO-92",
+            "value": "BC327",
+            "qty_total": 20,
+            "notes": "From 200pc BC-series kit.",
+            "tags": [
+                "BJT",
+                "TO-92",
+                "Transistor"
+            ]
+        },
+        {
+            "name": "BC337 BJT (TO-92)",
+            "category": "Transistor",
+            "subcategory": "BJT, TO-92",
+            "value": "BC337",
+            "qty_total": 20,
+            "notes": "From 200pc BC-series kit.",
+            "tags": [
+                "BJT",
+                "TO-92",
+                "Transistor"
+            ]
+        },
+        {
+            "name": "BC517 BJT (TO-92)",
+            "category": "Transistor",
+            "subcategory": "BJT, TO-92",
+            "value": "BC517",
+            "qty_total": 20,
+            "notes": "From 200pc BC-series kit.",
+            "tags": [
+                "BJT",
+                "TO-92",
+                "Transistor"
+            ]
+        },
+        {
+            "name": "BC547 BJT (TO-92)",
+            "category": "Transistor",
+            "subcategory": "BJT, TO-92",
+            "value": "BC547",
+            "qty_total": 20,
+            "notes": "From 200pc BC-series kit.",
+            "tags": [
+                "BJT",
+                "TO-92",
+                "Transistor"
+            ]
+        },
+        {
+            "name": "BC548 BJT (TO-92)",
+            "category": "Transistor",
+            "subcategory": "BJT, TO-92",
+            "value": "BC548",
+            "qty_total": 20,
+            "notes": "From 200pc BC-series kit.",
+            "tags": [
+                "BJT",
+                "TO-92",
+                "Transistor"
+            ]
+        },
+        {
+            "name": "BC549 BJT (TO-92)",
+            "category": "Transistor",
+            "subcategory": "BJT, TO-92",
+            "value": "BC549",
+            "qty_total": 20,
+            "notes": "From 200pc BC-series kit.",
+            "tags": [
+                "BJT",
+                "TO-92",
+                "Transistor"
+            ]
+        },
+        {
+            "name": "BC550 BJT (TO-92)",
+            "category": "Transistor",
+            "subcategory": "BJT, TO-92",
+            "value": "BC550",
+            "qty_total": 20,
+            "notes": "From 200pc BC-series kit.",
+            "tags": [
+                "BJT",
+                "TO-92",
+                "Transistor"
+            ]
+        },
+        {
+            "name": "BC556 BJT (TO-92)",
+            "category": "Transistor",
+            "subcategory": "BJT, TO-92",
+            "value": "BC556",
+            "qty_total": 20,
+            "notes": "From 200pc BC-series kit.",
+            "tags": [
+                "BJT",
+                "TO-92",
+                "Transistor"
+            ]
+        },
+        {
+            "name": "BC557 BJT (TO-92)",
+            "category": "Transistor",
+            "subcategory": "BJT, TO-92",
+            "value": "BC557",
+            "qty_total": 20,
+            "notes": "From 200pc BC-series kit.",
+            "tags": [
+                "BJT",
+                "TO-92",
+                "Transistor"
+            ]
+        },
+        {
+            "name": "BC558 BJT (TO-92)",
+            "category": "Transistor",
+            "subcategory": "BJT, TO-92",
+            "value": "BC558",
+            "qty_total": 20,
+            "notes": "From 200pc BC-series kit.",
+            "tags": [
+                "BJT",
+                "TO-92",
+                "Transistor"
+            ]
+        },
+        {
+            "name": "L7805 Linear Regulator (+5V)",
+            "category": "Voltage regulator",
+            "subcategory": "Linear, TO-220",
+            "value": "7805",
+            "qty_total": 5,
+            "notes": null,
+            "tags": [
+                "Linear",
+                "TO-220",
+                "Voltage regulator"
+            ]
+        },
+        {
+            "name": "L7806 Linear Regulator (+6V)",
+            "category": "Voltage regulator",
+            "subcategory": "Linear, TO-220",
+            "value": "7806",
+            "qty_total": 5,
+            "notes": null,
+            "tags": [
+                "Linear",
+                "TO-220",
+                "Voltage regulator"
+            ]
+        },
+        {
+            "name": "L7808 Linear Regulator (+8V)",
+            "category": "Voltage regulator",
+            "subcategory": "Linear, TO-220",
+            "value": "7808",
+            "qty_total": 5,
+            "notes": null,
+            "tags": [
+                "Linear",
+                "TO-220",
+                "Voltage regulator"
+            ]
+        },
+        {
+            "name": "L7809 Linear Regulator (+9V)",
+            "category": "Voltage regulator",
+            "subcategory": "Linear, TO-220",
+            "value": "7809",
+            "qty_total": 5,
+            "notes": null,
+            "tags": [
+                "Linear",
+                "TO-220",
+                "Voltage regulator"
+            ]
+        },
+        {
+            "name": "L7810 Linear Regulator (+10V)",
+            "category": "Voltage regulator",
+            "subcategory": "Linear, TO-220",
+            "value": "7810",
+            "qty_total": 5,
+            "notes": null,
+            "tags": [
+                "Linear",
+                "TO-220",
+                "Voltage regulator"
+            ]
+        },
+        {
+            "name": "L7812 Linear Regulator (+12V)",
+            "category": "Voltage regulator",
+            "subcategory": "Linear, TO-220",
+            "value": "7812",
+            "qty_total": 5,
+            "notes": null,
+            "tags": [
+                "Linear",
+                "TO-220",
+                "Voltage regulator"
+            ]
+        },
+        {
+            "name": "L7815 Linear Regulator (+15V)",
+            "category": "Voltage regulator",
+            "subcategory": "Linear, TO-220",
+            "value": "7815",
+            "qty_total": 5,
+            "notes": null,
+            "tags": [
+                "Linear",
+                "TO-220",
+                "Voltage regulator"
+            ]
+        },
+        {
+            "name": "L7818 Linear Regulator (+18V)",
+            "category": "Voltage regulator",
+            "subcategory": "Linear, TO-220",
+            "value": "7818",
+            "qty_total": 5,
+            "notes": null,
+            "tags": [
+                "Linear",
+                "TO-220",
+                "Voltage regulator"
+            ]
+        },
+        {
+            "name": "L7824 Linear Regulator (+24V)",
+            "category": "Voltage regulator",
+            "subcategory": "Linear, TO-220",
+            "value": "7824",
+            "qty_total": 5,
+            "notes": null,
+            "tags": [
+                "Linear",
+                "TO-220",
+                "Voltage regulator"
+            ]
+        },
+        {
+            "name": "LM317T Adjustable Regulator",
+            "category": "Voltage regulator",
+            "subcategory": "Linear, TO-220",
+            "value": "LM317T",
+            "qty_total": 5,
+            "notes": "Adjustable 1.2-37V.",
+            "tags": [
+                "Linear",
+                "TO-220",
+                "Voltage regulator"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+.git
+.github
+.vscode
+.idea
+.venv
+node_modules
+*.log
+tests
+inventory/public/uploads/*
+!inventory/public/uploads/.gitkeep

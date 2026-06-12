@@ -1,0 +1,12 @@
+# Local docker compose overrides + user secrets
+.env
+
+# Editor / OS detritus
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Build / test artifacts
+*.log
+*.bak

@@ -1,0 +1,50 @@
+# Edge Devices Inventory - docker compose stack
+#
+#   docker compose up -d        # start
+#   docker compose logs -f      # tail logs
+#   docker compose down         # stop, keep DB volume
+#   docker compose down -v      # stop, wipe DB volume too
+#
+# Then open http://localhost:8080
+#
+# Credentials default to the .env.example values. Copy .env.example to .env and
+# edit if you want different ones. .env is gitignored.
+
+services:
+  db:
+    image: mariadb:10.11
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: "${DB_PASSWORD:-rootpw}"
+      MARIADB_DATABASE:      "${DB_DATABASE:-edgedevices}"
+    volumes:
+      - dbdata:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost", "-p${DB_PASSWORD:-rootpw}"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-8080}:80"
+    environment:
+      DB_HOST:     db
+      DB_PORT:     3306
+      DB_DATABASE: "${DB_DATABASE:-edgedevices}"
+      DB_USER:     "${DB_USER:-root}"
+      DB_PASSWORD: "${DB_PASSWORD:-rootpw}"
+    volumes:
+      - ./inventory:/var/www/html
+      - uploads:/var/www/html/public/uploads
+
+volumes:
+  dbdata:
+  uploads:

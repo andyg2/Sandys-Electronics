@@ -1,0 +1,17 @@
+# Optional HTTP Basic Auth gate. Copy to .htaccess to enable.
+#
+#   htpasswd -c /path/to/.htpasswd andy
+#
+# Then point AuthUserFile at that path. Place .htpasswd OUTSIDE the
+# document root so it isn't web-readable.
+#
+# AuthType Basic
+# AuthName "Edge Devices Inventory"
+# AuthUserFile /etc/apache2/.htpasswd
+# Require valid-user
+
+# --- Mod-rewrite niceties (independent of auth) ---
+# Strip trailing slash on .php routes so /items.php/ still works.
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^(.+)/$ /$1 [R=301,L]
