@@ -20,9 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         flash('Project name is required.');
         redirect($_SERVER['REQUEST_URI']);
     }
-    $description    = input_text('description');
-    $wiring_diagram = input_text('wiring_diagram');
-    $code           = input_text('code');
+    $description       = input_text('description');
+    $wiring_diagram    = input_text('wiring_diagram');
+    $breadboard_layout = input_text('breadboard_layout');
+    $code              = input_text('code');
     $code_language  = input_str('code_language', 'cpp');
     if ($code_language === '') {
         $code_language = 'cpp';
@@ -49,24 +50,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($project === null) {
             $stmt = db()->prepare("
                 INSERT INTO projects
-                    (name, description, wiring_diagram, code, code_language, power_supply,
-                     difficulty, learning_concepts, status)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    (name, description, wiring_diagram, breadboard_layout, code, code_language,
+                     power_supply, difficulty, learning_concepts, status)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ");
-            $stmt->execute([$name, $description, $wiring_diagram, $code, $code_language, $power_supply,
-                            $difficulty, $learning_concepts, $status]);
+            $stmt->execute([$name, $description, $wiring_diagram, $breadboard_layout, $code, $code_language,
+                            $power_supply, $difficulty, $learning_concepts, $status]);
             $newId = (int) db()->lastInsertId();
             sync_project_tags(db(), $newId, $tagNames);
             redirect('/project.php?id=' . $newId);
         } else {
             $stmt = db()->prepare("
                 UPDATE projects
-                   SET name=?, description=?, wiring_diagram=?, code=?, code_language=?, power_supply=?,
+                   SET name=?, description=?, wiring_diagram=?, breadboard_layout=?,
+                       code=?, code_language=?, power_supply=?,
                        difficulty=?, learning_concepts=?, status=?
                  WHERE id=?
             ");
-            $stmt->execute([$name, $description, $wiring_diagram, $code, $code_language, $power_supply,
-                            $difficulty, $learning_concepts, $status, (int) $project['id']]);
+            $stmt->execute([$name, $description, $wiring_diagram, $breadboard_layout, $code, $code_language,
+                            $power_supply, $difficulty, $learning_concepts, $status, (int) $project['id']]);
             sync_project_tags(db(), (int) $project['id'], $tagNames);
             redirect('/project.php?id=' . (int) $project['id']);
         }
@@ -183,6 +185,17 @@ include SRC_DIR . '/header.php';
                   placeholder="flowchart LR&#10;    P9[Pin 9] --> LED((Red LED))&#10;    LED --> R[220&#937;]&#10;    R --> GND"><?= e($project['wiring_diagram'] ?? '') ?></textarea>
         <span class="text-xs text-gray-500 dark:text-gray-400 mt-1 block">
           See <a href="https://mermaid.js.org/syntax/flowchart.html" target="_blank" class="underline">flowchart syntax</a>. Leave blank to omit the wiring section.
+        </span>
+      </label>
+
+      <label class="block">
+        <span class="form-label">Breadboard layout
+          <span class="text-xs font-normal text-gray-500 dark:text-gray-400">(JSON - see AGENTS.md)</span>
+        </span>
+        <textarea name="breadboard_layout" rows="10" class="form-input font-mono text-sm"
+                  placeholder='{ "components": [ { "type": "led", "anode": "B10", "cathode": "C10", "color": "red" } ] }'><?= e($project['breadboard_layout'] ?? '') ?></textarea>
+        <span class="text-xs text-gray-500 dark:text-gray-400 mt-1 block">
+          Positions are <code>{ROW}{COL}</code> on a 30-column half-size board (rows A-J, +5V, GND). Leave blank to omit.
         </span>
       </label>
 

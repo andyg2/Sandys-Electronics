@@ -145,6 +145,20 @@ include SRC_DIR . '/header.php';
 </div>
 <?php endif ?>
 
+<?php if (!empty($project['breadboard_layout'])): ?>
+<div class="card mb-6">
+  <div class="card-body">
+    <h2 class="text-lg font-semibold mb-3 mt-0">Breadboard layout</h2>
+    <div class="bg-white dark:bg-gray-100 rounded border border-gray-100 dark:border-gray-700 p-2 sm:p-4 overflow-x-auto">
+      <pre data-breadboard hidden><?= e($project['breadboard_layout']) ?></pre>
+    </div>
+    <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
+      Rows A-J, columns 1-30. Red rail = + power, dark rail = ground. Yellow dot on a chip marks pin 1.
+    </p>
+  </div>
+</div>
+<?php endif ?>
+
 <?php if ($project['code']): ?>
 <div class="card mb-6">
   <div class="card-body">
@@ -222,6 +236,7 @@ include SRC_DIR . '/header.php';
     mermaid.initialize({ startOnLoad: false, theme: 'default', securityLevel: 'loose' });
   }
 </script>
+<script src="/assets/breadboard.js?v=1"></script>
 <script src="/assets/project_render.js?v=1"></script>
 
 <?php include SRC_DIR . '/footer.php';

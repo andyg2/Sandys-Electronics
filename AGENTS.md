@@ -71,6 +71,73 @@ testable change ("make the random pause longer" - not "improve the code").
 want to build this.
 ```
 
+## Breadboard layout DSL
+
+In addition to the high-level Mermaid wiring diagram, projects can carry a `breadboard_layout` field that paints an SVG picture of which holes the kid plugs into. The renderer (`public/assets/breadboard.js`) understands a small JSON DSL targeting a half-size, 30-column breadboard.
+
+### Position format
+
+`{ROW}{COL}` where ROW is `A`-`J` and COL is `1`-`30`. Examples: `E5`, `B12`, `J27`.
+
+Power rails are named `+5V` (or `VCC`) and `GND`. They can be qualified `_T` (top) or `_B` (bottom) - the renderer guesses based on whichever rail is closer to the component it connects to. Examples: `+5V_T`, `GND_B`, or just `+5V`.
+
+### Breadboard topology reminder
+
+- A column on the top half (rows A-E) is one electrical node. All five A-E holes in that column are the same wire.
+- A column on the bottom half (rows F-J) is a separate node from the top half (the centre gully splits them).
+- The four side rails (`+5V_T`, `GND_T`, `+5V_B`, `GND_B`) each run the full length of the board.
+
+### Components
+
+```json
+{
+  "components": [
+    { "type": "ic",        "name": "NE555", "pin1_at": "E5", "pins": 8 },
+    { "type": "led",       "color": "red",  "anode": "B15", "cathode": "B16" },
+    { "type": "resistor",  "value": "10K",  "from": "B12", "to": "F12" },
+    { "type": "capacitor", "value": "47uF", "positive": "B14", "negative": "GND_B" },
+    { "type": "wire",      "from": "A5",    "to": "GND_T",     "color": "#1f2937" },
+    { "type": "button",    "at": "C8",      "label": "S1" }
+  ],
+  "external": [
+    { "from": "Arduino Uno 5V",  "to": "+5V" },
+    { "from": "Arduino Uno GND", "to": "GND" }
+  ]
+}
+```
+
+- `ic` - DIP chip straddling the gully. `pin1_at` is the bottom-left pin (row E or F, choose so the chip sits across the centre). `pins` defaults to 8.
+- `led` - `color` is `red` / `green` / `blue` / `yellow` / `white`. Anode and cathode are individual holes (usually adjacent columns on the same half).
+- `resistor` - `value` is the readable label ("220R", "10K", "1M"). `from` and `to` are the two leg positions.
+- `capacitor` - `value` and `positive` / `negative`. Electrolytics are polarised by default.
+- `wire` - colour any CSS colour. Use `#ef4444` for +V wires, `#1f2937` for ground, `#f59e0b` for signal jumpers as a convention.
+- `button` - 4-pin tactile at the position. `label` is a small text annotation.
+
+### Off-board
+
+`external` lists everything that lives OFF the breadboard - the Arduino, the USB charger, sensors that connect via dupont jumpers. Free-form text on both sides. Renders as a "Off-board:" list under the board.
+
+### How to lay out a chip
+
+Take an NE555 at `pin1_at: "E5"`. The chip body sits across the gully between rows E and F. Pin numbering counter-clockwise from the notch:
+
+- Pin 1 (bottom-left): col 5 top half  -> any of A5/B5/C5/D5
+- Pin 2: col 6 top
+- Pin 3: col 7 top
+- Pin 4 (bottom-right): col 8 top
+- Pin 5 (top-right): col 8 bottom -> any of F8/G8/H8/I8/J8
+- Pin 6: col 7 bottom
+- Pin 7: col 6 bottom
+- Pin 8 (top-left): col 5 bottom
+
+So wiring pin 4 to +5V means a wire from any A-D in col 8 to the +5V rail.
+
+### When to include a breadboard_layout
+
+- Always, if the project is buildable on a breadboard.
+- Skip when the project is just an MCU + WiFi with no breadboard parts (e.g., the XIAO chip-temperature web page).
+- Don't try to draw projects that need a perfboard / proto PCB / soldering. The DSL doesn't render those, and that audience is out of scope anyway.
+
 ## Mermaid wiring diagram conventions
 
 - Use `flowchart` syntax (`LR` or `TD`). Group the MCU as a subgraph; group the breadboard as a subgraph if there is significant on-breadboard wiring.

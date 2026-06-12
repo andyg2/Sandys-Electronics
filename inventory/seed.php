@@ -66,6 +66,7 @@ CREATE TABLE projects (
     name              VARCHAR(255) NOT NULL UNIQUE,
     description       TEXT         DEFAULT NULL,
     wiring_diagram    TEXT         DEFAULT NULL,
+    breadboard_layout TEXT         DEFAULT NULL,
     code              TEXT         DEFAULT NULL,
     code_language     VARCHAR(32)  DEFAULT 'cpp',
     power_supply      VARCHAR(255) DEFAULT NULL,
