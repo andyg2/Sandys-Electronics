@@ -140,9 +140,9 @@ function resolveItemName(string $raw, array $aliases, PDOStatement $lookup): ?in
 $checkProj   = $pdo->prepare('SELECT id FROM projects WHERE name = ?');
 $insertProj  = $pdo->prepare(
     'INSERT INTO projects
-        (name, description, wiring_diagram, code, code_language, power_supply,
-         difficulty, learning_concepts, status)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
+        (name, description, wiring_diagram, breadboard_layout, code, code_language,
+         power_supply, difficulty, learning_concepts, status)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
 );
 $insertAlloc = $pdo->prepare(
     'INSERT INTO allocations (item_id, project_id, qty, notes)
@@ -180,12 +180,13 @@ foreach ($projects as $idx => $p) {
 
     $insertProj->execute([
         $finalName,
-        $p['description']    ?? null,
-        $p['wiring_diagram'] ?? null,
-        $p['code']           ?? null,
-        $p['code_language']  ?? 'cpp',
-        $p['power_supply']   ?? null,
-        $p['difficulty']     ?? null,
+        $p['description']       ?? null,
+        $p['wiring_diagram']    ?? null,
+        $p['breadboard_layout'] ?? null,
+        $p['code']              ?? null,
+        $p['code_language']     ?? 'cpp',
+        $p['power_supply']      ?? null,
+        $p['difficulty']        ?? null,
         $concepts,
         'planning',
     ]);
