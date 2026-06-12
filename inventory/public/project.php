@@ -236,7 +236,7 @@ include SRC_DIR . '/header.php';
     mermaid.initialize({ startOnLoad: false, theme: 'default', securityLevel: 'loose' });
   }
 </script>
-<script src="/assets/breadboard.js?v=3"></script>
+<script src="/assets/breadboard.js?v=6"></script>
 <script src="/assets/project_render.js?v=1"></script>
 
 <?php include SRC_DIR . '/footer.php';
