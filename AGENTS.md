@@ -2,7 +2,13 @@
 
 If you are an AI agent helping with this repository - whether you are writing a single project by hand or driving one of the multi-agent workflows - read this file before producing any project record.
 
-The audience for the projects is **a parent who is a beginner at electronics, sometimes with his 10-year-old son**. Default to **no soldering**, beginner-friendly explanations, and immediate visible feedback (LED, OLED, servo, sound).
+The audience for the projects is **a 10-year-old building with his dad**. Default to **no soldering**, kid-readable explanations (5th grade), and immediate visible feedback (LED, OLED, servo, sound). The dad can do moderate adult-only steps (programming a sketch, configuring WiFi), but the kid should be the one wiring the breadboard and watching the magic happen.
+
+Do NOT author projects that:
+
+- Require soldering as part of the core build (the Double-Sided Prototype PCB is currently off the menu).
+- Lean on deep adult-level circuit theory (Schmitt triggers, Sallen-Key filters, flyback SMPS topology, op-amp open-loop gain, etc.) as the WHY of the project. A kid project can USE those parts, but the explanation has to be "watch this happen", not "the small-signal model of the LM358 ...".
+- Have no kid-visible output (an unloaded bench power supply, a calibration jig, etc.).
 
 ## The project-record contract
 
@@ -27,9 +33,18 @@ Plus:
 
 ## Description markdown template
 
-Use these five sections, in this order:
+The description starts with a **two-paragraph kid-friendly opener** placed ABOVE all `##` sections. Then five `##` sections in order:
 
 ```markdown
+**What it is**: 1-2 plain-English sentences describing what the finished thing
+DOES. Use 5th-grade language. No chip names or circuit theory - just what it
+looks like, sounds like, or what you do with it. Imagine a kid flipping
+through the curriculum asking "but what does it actually DO?"
+
+**Why it's fun**: 1-2 sentences explaining the wow factor, framed for a
+10-year-old. Compete-with-siblings, look-cool, make-something-react, or
+this-is-magic angles.
+
 ## Parts list
 
 Bulleted list. Each bullet matches an allocated inventory item (or is an external

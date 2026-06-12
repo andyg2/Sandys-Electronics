@@ -2,7 +2,7 @@
 
 A tiny PHP + MariaDB app for tracking a hobby electronics inventory and curating beginner-friendly Arduino / ESP32 project records against it. Built to teach a parent and his 10-year-old son, with an AI-powered project generator that produces complete, runnable project write-ups (wiring + code + parts list).
 
-Ships with **197 inventory items** across 12 categories and **64 example projects** spanning absolute-beginner LED games through advanced multi-IC builds on a proto PCB (NE555 timers, op-amp circuits, audio amps, switching SMPS, bench power supplies, discrete BJT logic gates, ...).
+Ships with **197 inventory items** across 12 categories and **56 example projects** spanning absolute-beginner LED games, NE555 timer recipes, op-amp comparator dark detectors, ESP32 + WiFi mini web pages, soil-moisture plant monitors, IR / ultrasonic / hall / PIR sensor showcases, and other kid-friendly builds. Strictly no-soldering - everything works on the breadboard.
 
 ![Items list, light mode](docs/screenshots/items-light.png)
 
@@ -52,7 +52,7 @@ docker compose up -d
 
 Wait ~10 seconds for the DB to come up and seed. Then open <http://localhost:8080>.
 
-The first start runs `seed.php` and loads `inventory/examples/projects.json` (64 projects) automatically. Subsequent starts are no-ops. To wipe and re-seed: `docker compose down -v && docker compose up -d`.
+The first start runs `seed.php` and loads `inventory/examples/projects.json` (56 projects) automatically. Subsequent starts are no-ops. To wipe and re-seed: `docker compose down -v && docker compose up -d`.
 
 ### Option B: Native PHP + MariaDB
 
@@ -62,7 +62,7 @@ cd Sandys-Electronics
 bash setup.sh
 ```
 
-`setup.sh` checks for PHP 8.2+ and the `pdo_mysql` extension, creates `inventory/src/config.php` from the example, creates the database if it doesn't exist, runs the seed, and optionally loads the 64 example projects.
+`setup.sh` checks for PHP 8.2+ and the `pdo_mysql` extension, creates `inventory/src/config.php` from the example, creates the database if it doesn't exist, runs the seed, and optionally loads the 56 example projects.
 
 After it finishes, point a web server at `inventory/public/` or run the PHP built-in server:
 
@@ -86,7 +86,7 @@ make help          # list all targets
 make setup         # full first-time setup (interactive)
 make seed          # (re)create schema + load 197 example inventory items
 make empty         # (re)create schema with no inventory rows
-make examples      # load 64 example projects into existing schema
+make examples      # load 56 example projects into existing schema
 make test          # smoke tests
 make serve         # PHP built-in server at localhost:8080
 make docker-up     # docker compose up -d
@@ -113,7 +113,7 @@ make clean         # clear inventory/public/uploads/
     seed.php             Schema + 197-item seed
     examples/
       inventory.json     197 items as JSON (round-trip with _export/_import)
-      projects.json      64 example projects with allocations + tags
+      projects.json      56 example projects with allocations + tags
     _generate_inventory_snapshot.php   Text snapshot for workflow agent prompts
     _insert_generated_projects.php     Load a projects JSON into MariaDB
     _export_inventory.php              Export items to JSON
@@ -131,8 +131,9 @@ make clean         # clear inventory/public/uploads/
       config.example.php   Committed; copy to config.php (gitignored)
     workflows/
       generate_projects.workflow.js
-      fill_gaps.workflow.js
-      fill_gaps.workflow.template.js
+      generate_ic_projects.workflow.js / .template.js
+      fill_gaps.workflow.js / .template.js
+      add_openers.workflow.js / .template.js
 
   tests/
     smoke.sh             24 checks; takes ~5 seconds
