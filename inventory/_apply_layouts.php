@@ -37,11 +37,13 @@ foreach ($results as $r) {
     $id = (int) ($r['id'] ?? 0);
     if ($id <= 0) { $bad++; continue; }
 
-    $existing->execute([$id]);
-    $cur = $existing->fetchColumn();
-    if ($cur !== false && $cur !== null && trim((string) $cur) !== '') {
-        $skippedAlready++;
-        continue;
+    if (empty($argv[2]) || $argv[2] !== '--overwrite') {
+        $existing->execute([$id]);
+        $cur = $existing->fetchColumn();
+        if ($cur !== false && $cur !== null && trim((string) $cur) !== '') {
+            $skippedAlready++;
+            continue;
+        }
     }
 
     if (!empty($r['skip'])) {

@@ -37,6 +37,51 @@
     return e;
   }
 
+  // ---------- hover side panel ----------
+
+  function resetSidePanel(panel) {
+    panel.innerHTML = '<div class="bb-side-empty">Hover a component or off-board line to see its photo.</div>';
+  }
+
+  function showItemInPanel(panel, item) {
+    panel.innerHTML = '';
+    if (item.image_path) {
+      const img = document.createElement('img');
+      img.src = item.image_path;
+      img.alt = item.name;
+      img.className = 'bb-side-img';
+      panel.appendChild(img);
+    } else {
+      const ph = document.createElement('div');
+      ph.className = 'bb-side-noimg';
+      ph.textContent = 'No photo on file';
+      panel.appendChild(ph);
+    }
+    const nm = document.createElement('div');
+    nm.className = 'bb-side-name';
+    nm.textContent = item.name;
+    panel.appendChild(nm);
+    if (item.category || item.value) {
+      const meta = document.createElement('div');
+      meta.className = 'bb-side-meta';
+      const bits = [];
+      if (item.category) bits.push(item.category);
+      if (item.value) bits.push(item.value);
+      meta.textContent = bits.join(' / ');
+      panel.appendChild(meta);
+    }
+  }
+
+  function attachHover(g, ctx, itemId) {
+    if (!g || !ctx || !ctx.sidePanel) return;
+    if (itemId == null) return;
+    const item = ctx.itemsById[itemId];
+    if (!item) return;
+    g.style.cursor = 'help';
+    g.addEventListener('mouseenter', () => showItemInPanel(ctx.sidePanel, item));
+    g.addEventListener('mouseleave', () => resetSidePanel(ctx.sidePanel));
+  }
+
   // Each tie hole's "electrical node": same column + same half = same node.
   // Power rails are one node per side.
   function nodeFor(row, col) {
@@ -109,7 +154,7 @@
     //   5. overlay (text labels, hint)
     ctx.boardLayer     = el('g', { class: 'bb-board' }, svg);
     ctx.holesLayer     = el('g', { class: 'bb-holes' }, svg);
-    ctx.componentLayer = el('g', { class: 'bb-components', 'pointer-events': 'none' }, svg);
+    ctx.componentLayer = el('g', { class: 'bb-components' }, svg);
     ctx.wireLayer      = el('g', { class: 'bb-wires',      'pointer-events': 'none' }, svg);
     ctx.overlayLayer   = el('g', { class: 'bb-overlay' }, svg);
 
@@ -202,7 +247,7 @@
 
   // ---------- glyphs ----------
 
-  function drawWire(svg, ctx, from, to, color) {
+  function drawWire(svg, ctx, from, to, color, itemId) {
     let a = resolvePos(from);
     let b = resolvePos(to, a && a.col);
     if (!a || !b) return null;
@@ -258,7 +303,7 @@
     return { a, b, flying, color: colorAttr };
   }
 
-  function drawResistor(svg, ctx, from, to, value) {
+  function drawResistor(svg, ctx, from, to, value, itemId) {
     const a = resolvePos(from);
     let b = resolvePos(to, a && a.col);
     if (!a || !b) return;
@@ -288,9 +333,10 @@
         transform: `rotate(${labelRot})`,
       }, g).textContent = value;
     }
+    attachHover(g, ctx, itemId);
   }
 
-  function drawCapacitor(svg, ctx, positive, negative, value, polarised) {
+  function drawCapacitor(svg, ctx, positive, negative, value, polarised, itemId) {
     const a = resolvePos(positive);
     let b = resolvePos(negative);
     if (!a || !b) return;
@@ -331,9 +377,10 @@
       el('text', { x: a.x, y: bulbY + 3.5, 'font-size': 11, 'font-family': 'monospace', 'font-weight': 'bold', fill: '#b91c1c', 'text-anchor': 'middle' }, g).textContent = '+';
       el('rect', { x: b.x - 4, y: bulbY - r + 2, width: 8, height: 2.5, fill: '#fff', opacity: 0.95 }, g);
     }
+    attachHover(g, ctx, itemId);
   }
 
-  function drawLed(svg, ctx, anode, cathode, color) {
+  function drawLed(svg, ctx, anode, cathode, color, itemId) {
     const a = resolvePos(anode);
     const c = resolvePos(cathode);
     if (!a || !c) return;
@@ -350,6 +397,7 @@
     el('ellipse', { cx: mx - 3, cy: my, rx: 3, ry: 4, fill: '#fff', opacity: 0.55 }, g);
     el('text', { x: a.x, y: a.y - 6, 'font-size': 8, 'font-family': 'monospace', 'font-weight': 'bold', fill: '#b91c1c', 'text-anchor': 'middle' }, ctx.componentLayer).textContent = '+';
     el('text', { x: c.x, y: c.y - 6, 'font-size': 8, 'font-family': 'monospace', 'font-weight': 'bold', fill: '#1f2937', 'text-anchor': 'middle' }, ctx.componentLayer).textContent = '-';
+    attachHover(g, ctx, itemId);
   }
 
   // colour-code IC bodies by family so a quick glance distinguishes
@@ -379,7 +427,7 @@
     return { fill: '#1e293b', label: '#fafafa' };
   }
 
-  function drawIC(svg, ctx, name, pin1_at, pins) {
+  function drawIC(svg, ctx, name, pin1_at, pins, itemId) {
     const p1 = resolvePos(pin1_at);
     if (!p1 || !p1.row || !p1.col) return;
     pins = pins || 8;
@@ -407,9 +455,10 @@
     el('text', { x: (x1 + x2) / 2, y: (yTop + yBot) / 2 + 4, 'font-size': 10, 'font-family': 'monospace', fill: palette.label, 'text-anchor': 'middle', 'font-weight': 'bold' }, g).textContent = name;
     const pin1Y = p1.row === 'E' ? yTop + 4 : yBot - 4;
     el('circle', { cx: colX(p1.col), cy: pin1Y, r: 2.5, fill: '#fde047', stroke: '#a16207', 'stroke-width': 0.8 }, g);
+    attachHover(g, ctx, itemId);
   }
 
-  function drawTransistor(svg, ctx, at, name, package_, pinout) {
+  function drawTransistor(svg, ctx, at, name, package_, pinout, itemId) {
     // 3-pin TO-92 plastic transistor with rounded back. `at` is the centre pin.
     // pinout default: BC547 = "BCE" (left to right when flat-side faces you).
     const c = resolvePos(at);
@@ -430,9 +479,10 @@
       el('text', { x, y: c.y - 7, 'font-size': 7, 'font-family': 'monospace', fill: '#fafafa', 'text-anchor': 'middle' }, g).textContent = order[i + 1];
     }
     if (name) el('text', { x: c.x, y: c.y + 22, 'font-size': 8, 'font-family': 'monospace', fill: '#1c1917', 'text-anchor': 'middle', 'font-weight': 'bold' }, g).textContent = name;
+    attachHover(g, ctx, itemId);
   }
 
-  function drawButton(svg, ctx, at, label) {
+  function drawButton(svg, ctx, at, label, itemId) {
     // 4-pin tactile button. `at` is the top-left pin. Other pins at +2 cols across,
     // and the second row of pins is 2 rows below.
     const tl = resolvePos(at);
@@ -455,9 +505,10 @@
     if (label) el('text', { x: cx, y: cy - sz / 2 - 4, 'font-size': 8, 'font-family': 'monospace', fill: '#1f2937', 'text-anchor': 'middle', 'font-weight': 'bold' }, g).textContent = label;
     // pin dots so the kid sees which 4 holes the button straddles
     [tl, tr, bl, br].forEach(p => el('circle', { cx: p.x, cy: p.y, r: 2.6, fill: '#475569' }, g));
+    attachHover(g, ctx, itemId);
   }
 
-  function drawPot(svg, ctx, at, value, label) {
+  function drawPot(svg, ctx, at, value, label, itemId) {
     // 3-pin potentiometer or trimmer. `at` is the centre (wiper) pin.
     const c = resolvePos(at);
     if (!c) return;
@@ -474,6 +525,7 @@
     el('circle', { cx: c.x - TIE, cy: c.y, r: 2.6, fill: '#475569' }, g);
     el('circle', { cx: c.x,        cy: c.y, r: 2.6, fill: '#475569' }, g);
     el('circle', { cx: c.x + TIE, cy: c.y, r: 2.6, fill: '#475569' }, g);
+    attachHover(g, ctx, itemId);
   }
 
   function drawModule(svg, ctx, comp) {
@@ -507,6 +559,7 @@
         el('text', { x: p.x, y: ly, 'font-size': 7, 'font-family': 'monospace', fill: '#1f2937', 'text-anchor': 'middle' }, g).textContent = label;
       }
     });
+    attachHover(g, ctx, comp.item_id);
   }
 
   function drawServo(svg, ctx, comp) {
@@ -530,8 +583,12 @@
     el('text', { x: PAD_X, y, 'font-size': 10, 'font-family': 'system-ui, sans-serif', fill: '#1f2937', 'font-weight': 'bold' }, ctx.overlayLayer).textContent = 'Off-board:';
     y += 13;
     externals.forEach(e => {
-      el('text', { x: PAD_X + 10, y, 'font-size': 10, 'font-family': 'system-ui, sans-serif', fill: '#374151' }, ctx.overlayLayer).textContent =
-        `${e.from || '?'}  →  ${e.to || '?'}`;
+      const txt = `${e.from || '?'}  →  ${e.to || '?'}`;
+      const g = el('g', { class: 'bb-ext-row' }, ctx.overlayLayer);
+      // Transparent hit-box so the whole row is hoverable, not just the glyph edges.
+      el('rect', { x: PAD_X, y: y - 9, width: W - PAD_X * 2, height: 12, fill: 'transparent' }, g);
+      el('text', { x: PAD_X + 10, y, 'font-size': 10, 'font-family': 'system-ui, sans-serif', fill: '#374151' }, g).textContent = txt;
+      attachHover(g, ctx, e.item_id);
       y += 13;
     });
     const vb = svg.getAttribute('viewBox').split(' ').map(Number);
@@ -552,7 +609,7 @@
 
   // ---------- entry point ----------
 
-  function render(container, layout) {
+  function render(container, layout, itemsById) {
     if (typeof layout === 'string') {
       try { layout = JSON.parse(layout); } catch (e) {
         container.textContent = 'Invalid breadboard JSON: ' + e.message;
@@ -560,10 +617,31 @@
       }
     }
     container.innerHTML = '';
-    const svg = document.createElementNS(NS, 'svg');
-    container.appendChild(svg);
 
-    const ctx = { tiesByNode: {}, activeNode: null };
+    // Build flex wrapper: SVG on the left, image side-panel on the right.
+    const wrapper = document.createElement('div');
+    wrapper.className = 'bb-wrapper';
+
+    const svgCol = document.createElement('div');
+    svgCol.className = 'bb-svg-col';
+
+    const sidePanel = document.createElement('aside');
+    sidePanel.className = 'bb-side';
+    resetSidePanel(sidePanel);
+
+    wrapper.appendChild(svgCol);
+    wrapper.appendChild(sidePanel);
+    container.appendChild(wrapper);
+
+    const svg = document.createElementNS(NS, 'svg');
+    svgCol.appendChild(svg);
+
+    const ctx = {
+      tiesByNode: {},
+      activeNode: null,
+      itemsById: itemsById || {},
+      sidePanel,
+    };
 
     drawBoard(svg, ctx);
 
@@ -571,16 +649,16 @@
     svg.addEventListener('click', () => { ctx.activeNode = null; highlightNode(ctx, null, false); });
 
     const comps = layout.components || [];
-    comps.filter(c => c.type === 'wire').forEach(c => drawWire(svg, ctx, c.from, c.to, c.color));
-    comps.filter(c => c.type === 'resistor').forEach(c => drawResistor(svg, ctx, c.from, c.to, c.value));
-    comps.filter(c => c.type === 'capacitor').forEach(c => drawCapacitor(svg, ctx, c.positive, c.negative, c.value, c.polarised));
-    comps.filter(c => c.type === 'led').forEach(c => drawLed(svg, ctx, c.anode, c.cathode, c.color));
-    comps.filter(c => c.type === 'button' || c.type === 'switch').forEach(c => drawButton(svg, ctx, c.at, c.label));
-    comps.filter(c => c.type === 'pot' || c.type === 'trimmer').forEach(c => drawPot(svg, ctx, c.at, c.value, c.label));
-    comps.filter(c => c.type === 'transistor').forEach(c => drawTransistor(svg, ctx, c.at, c.name, c.package, c.pinout));
+    comps.filter(c => c.type === 'wire').forEach(c => drawWire(svg, ctx, c.from, c.to, c.color, c.item_id));
+    comps.filter(c => c.type === 'resistor').forEach(c => drawResistor(svg, ctx, c.from, c.to, c.value, c.item_id));
+    comps.filter(c => c.type === 'capacitor').forEach(c => drawCapacitor(svg, ctx, c.positive, c.negative, c.value, c.polarised, c.item_id));
+    comps.filter(c => c.type === 'led').forEach(c => drawLed(svg, ctx, c.anode, c.cathode, c.color, c.item_id));
+    comps.filter(c => c.type === 'button' || c.type === 'switch').forEach(c => drawButton(svg, ctx, c.at, c.label, c.item_id));
+    comps.filter(c => c.type === 'pot' || c.type === 'trimmer').forEach(c => drawPot(svg, ctx, c.at, c.value, c.label, c.item_id));
+    comps.filter(c => c.type === 'transistor').forEach(c => drawTransistor(svg, ctx, c.at, c.name, c.package, c.pinout, c.item_id));
     comps.filter(c => c.type === 'module').forEach(c => drawModule(svg, ctx, c));
     comps.filter(c => c.type === 'servo').forEach(c => drawServo(svg, ctx, c));
-    comps.filter(c => c.type === 'ic').forEach(c => drawIC(svg, ctx, c.name, c.pin1_at, c.pins));
+    comps.filter(c => c.type === 'ic').forEach(c => drawIC(svg, ctx, c.name, c.pin1_at, c.pins, c.item_id));
 
     drawExternals(svg, ctx, layout.external);
     drawHint(svg, ctx);
@@ -591,11 +669,15 @@
       try {
         const src = node.textContent.trim();
         if (!src) return;
+        let itemsById = {};
+        if (node.dataset.items) {
+          try { itemsById = JSON.parse(node.dataset.items); } catch (e) { itemsById = {}; }
+        }
         const target = document.createElement('div');
         target.className = 'breadboard-render';
         node.parentNode.insertBefore(target, node.nextSibling);
         node.style.display = 'none';
-        render(target, src);
+        render(target, src, itemsById);
       } catch (e) {
         console.warn('breadboard render failed', e);
       }

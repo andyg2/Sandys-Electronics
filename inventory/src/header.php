@@ -22,6 +22,7 @@
   <script>
     tailwind.config = { darkMode: 'class' };
   </script>
+  <link rel="stylesheet" href="/assets/style.css?v=2">
 
   <style type="text/tailwindcss">
     @layer components {

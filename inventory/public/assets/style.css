@@ -1,3 +1,51 @@
 /* Tailwind Play CDN handles all utility classes at runtime.
    This file is intentionally minimal - only put genuinely custom rules here
    that don't fit Tailwind's model. */
+
+/* Breadboard renderer: SVG on the left, hover-driven image panel on the right. */
+.bb-wrapper { display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
+.bb-svg-col { flex: 1 1 0; min-width: 0; }
+.bb-side {
+  flex: 0 0 220px;
+  max-width: 260px;
+  min-width: 180px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 12px;
+  background: #fafafa;
+  font-family: system-ui, sans-serif;
+  font-size: 12px;
+  color: #374151;
+  position: sticky;
+  top: 12px;
+  min-height: 200px;
+}
+.bb-side-empty { color: #9ca3af; font-style: italic; line-height: 1.5; }
+.bb-side-img {
+  width: 100%;
+  height: auto;
+  max-height: 220px;
+  object-fit: contain;
+  border-radius: 4px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 8px;
+  display: block;
+}
+.bb-side-noimg {
+  width: 100%;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  font-style: italic;
+  border: 1px dashed #d1d5db;
+  border-radius: 4px;
+  background: #fff;
+  margin-bottom: 8px;
+}
+.bb-side-name { font-weight: 600; color: #1f2937; font-size: 13px; line-height: 1.3; }
+.bb-side-meta { color: #6b7280; font-size: 11px; margin-top: 3px; }
+.bb-ext-row:hover rect { fill: rgba(254, 240, 138, 0.5); }
+.bb-ext-row { cursor: help; }

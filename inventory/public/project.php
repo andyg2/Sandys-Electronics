@@ -146,14 +146,27 @@ include SRC_DIR . '/header.php';
 <?php endif ?>
 
 <?php if (!empty($project['breadboard_layout'])): ?>
+<?php
+  $bbItems = [];
+  foreach ($allocations as $a) {
+      $bbItems[(int) $a['item_id']] = [
+          'id'         => (int) $a['item_id'],
+          'name'       => $a['item_name'],
+          'image_path' => $a['image_path'] ? UPLOAD_URL_PREFIX . $a['image_path'] : null,
+          'category'   => $a['category'],
+          'value'      => $a['value'],
+      ];
+  }
+?>
 <div class="card mb-6">
   <div class="card-body">
     <h2 class="text-lg font-semibold mb-3 mt-0">Breadboard layout</h2>
     <div class="bg-white dark:bg-gray-100 rounded border border-gray-100 dark:border-gray-700 p-2 sm:p-4 overflow-x-auto">
-      <pre data-breadboard hidden><?= e($project['breadboard_layout']) ?></pre>
+      <pre data-breadboard data-items="<?= e(json_encode($bbItems, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_FORCE_OBJECT)) ?>" hidden><?= e($project['breadboard_layout']) ?></pre>
     </div>
     <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
       Rows A-J, columns 1-30. Red rail = + power, dark rail = ground. Yellow dot on a chip marks pin 1.
+      Hover a component or off-board line for the part's photo.
     </p>
   </div>
 </div>
@@ -236,7 +249,7 @@ include SRC_DIR . '/header.php';
     mermaid.initialize({ startOnLoad: false, theme: 'default', securityLevel: 'loose' });
   }
 </script>
-<script src="/assets/breadboard.js?v=6"></script>
+<script src="/assets/breadboard.js?v=7"></script>
 <script src="/assets/project_render.js?v=1"></script>
 
 <?php include SRC_DIR . '/footer.php';

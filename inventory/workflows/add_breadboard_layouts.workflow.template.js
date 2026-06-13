@@ -60,9 +60,29 @@ const DSL_GUIDE = [
   '    Three positions (sig / +5V / GND). The motor itself sits off-board (mention in `external`).',
   '',
   'OFF-BOARD:',
-  '  external:[{from, to}, ...] lists every connection that lives outside the breadboard - the',
+  '  external:[{from, to, item_id?}, ...] lists every connection that lives outside the breadboard - the',
   '  Arduino Uno, NodeMCU-32S, power supplies, mains-side of a relay, big modules like the',
-  '  4-digit display. Use plain English: { "from": "Arduino Uno pin 9", "to": "B5" }.',
+  '  4-digit display. Use plain English: { "from": "Arduino Uno pin 9", "to": "B5", "item_id": 1 }.',
+  '',
+  'EVERY ENTRY MUST CARRY AN item_id (CRITICAL):',
+  '  Each component AND each external entry must have an item_id field set to one of the',
+  '  ALLOCATED_ITEMS ids listed in the prompt. Choose the id that represents the part the entry',
+  '  depicts:',
+  '    - wire        -> the jumper-wire allocation id (M-M or F-M, pick whichever role fits)',
+  '    - button      -> the tactile-button allocation id',
+  '    - led         -> the LED allocation id of that color',
+  '    - resistor    -> the resistor allocation id of that value',
+  '    - capacitor   -> the capacitor allocation id of that value',
+  '    - transistor  -> the transistor/regulator allocation id (by part number)',
+  '    - ic          -> the IC allocation id (e.g. NE555)',
+  '    - module      -> the module/sensor allocation id (e.g. DHT11, MB102, OLED)',
+  '    - servo       -> the servo allocation id',
+  '    - pot/trimmer -> the potentiometer allocation id',
+  '  For externals: if the "from" text refers to an allocated item (e.g. "Arduino Uno 5V" or',
+  '  "NodeMCU GPIO 4" or "ESP32-CAM GND"), set item_id to that allocation id.',
+  '  If the external refers to something OUTSIDE inventory (a 12V wall-wart, a USB cable, a',
+  '  laptop, a 9V battery, a phone charger, "same supply ground"), set item_id to null.',
+  '  Components NEVER use null - if the project has no jumpers allocated, do not emit wires.',
   '',
   'PLACEMENT GUIDELINES:',
   '- LEDs ALWAYS get a series resistor.',
@@ -90,17 +110,25 @@ const SCHEMA = {
       properties: {
         components: {
           type: 'array',
-          items: { type: 'object' },
+          items: {
+            type: 'object',
+            properties: {
+              type:    { type: 'string' },
+              item_id: { type: 'integer' },
+            },
+            required: ['type', 'item_id'],
+          },
         },
         external: {
           type: 'array',
           items: {
             type: 'object',
             properties: {
-              from: { type: 'string' },
-              to:   { type: 'string' },
+              from:    { type: 'string' },
+              to:      { type: 'string' },
+              item_id: { type: ['integer', 'null'] },
             },
-            required: ['from', 'to'],
+            required: ['from', 'to', 'item_id'],
           },
         },
       },
@@ -117,8 +145,8 @@ const results = await parallel(PROJECTS.map(p => () => agent(
   'NAME: ' + p.name + '\n' +
   'DIFFICULTY: ' + (p.difficulty || 'beginner') + '\n' +
   'POWER SUPPLY: ' + (p.power_supply || '(unspecified)') + '\n\n' +
-  'ALLOCATED PARTS (these and only these are on hand):\n' +
-  (p.allocations || []).map(a => `  - ${a.qty}x ${a.item_name}${a.notes ? ' (' + a.notes + ')' : ''}`).join('\n') + '\n\n' +
+  'ALLOCATED_ITEMS (these are the ONLY item_ids you may use):\n' +
+  (p.allocations || []).map(a => `  - item_id=${a.item_id}  qty=${a.qty}  ${a.item_name}${a.notes ? '  (' + a.notes + ')' : ''}`).join('\n') + '\n\n' +
   'DESCRIPTION (the wiring notes section is the most relevant):\n' + (p.description || '').slice(0, 4500) + '\n\n' +
   DSL_GUIDE + '\n\n' +
   'OUTPUT:\n' +
@@ -126,6 +154,8 @@ const results = await parallel(PROJECTS.map(p => () => agent(
   '    skip:true + skip_reason ("No breadboard parts - just MCU+USB", etc.), OR\n' +
   '    skip:false + a complete layout {components:[...], external:[...]}.\n\n' +
   'Quality bar:\n' +
+  '- EVERY component has item_id set to one of the ALLOCATED_ITEMS ids above. No exceptions.\n' +
+  '- EVERY external has item_id set to an allocated id OR explicitly null (for off-inventory wall-warts, cables).\n' +
   '- Every allocated breadboard part appears in components (or, for MCU boards, in external).\n' +
   '- LED current-limiting resistors actually allocated AND drawn in series.\n' +
   '- Cap legs do not share columns with IC bodies.\n' +
