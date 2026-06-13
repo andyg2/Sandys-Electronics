@@ -55,6 +55,21 @@ item like a USB cable that's intentionally out of inventory).
 Push-fit instructions on top of the diagram. Mention pull-up resistors, jumper
 orientation, anything the diagram doesn't capture.
 
+## Flash it and run it
+
+How the kid+dad actually get the thing working once it's wired. For MCU projects
+this is a numbered, click-by-click walkthrough of installing the Arduino IDE,
+adding the board manager (URL inlined for ESP32 projects), selecting the right
+board, picking the port, setting any required passwords/constants in the sketch,
+uploading, opening Serial Monitor at the right baud, and what to expect to see
+when it works. For pure-analog projects (NE555 only, etc.) this is the
+power-up and multimeter probe procedure - no IDE talk, just "plug in 5V, watch
+the LED, probe test point 3 and confirm a square wave between 0V and 3.5V".
+
+Always include a "Common gotchas" mini-section at the end with the 2-3 most
+likely failure modes (wrong baud, missing board package, holding BOOT during
+upload, wrong WiFi band).
+
 ## Talking points
 
 3-5 conceptual nuggets the builder can use to explain what's happening as they

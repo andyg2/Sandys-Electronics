@@ -24,6 +24,7 @@ const CONVENTIONS = [
   '  Then five ## sections in order:',
   '    ## Parts list',
   '    ## Wiring notes',
+  '    ## Flash it and run it   (IDE setup OR multimeter probe procedure, with Common gotchas)',
   '    ## Talking points',
   '    ## Things to change once it works',
   '    ## Why this is interesting',
