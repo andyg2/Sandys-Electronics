@@ -96,6 +96,7 @@ include SRC_DIR . '/header.php';
       <thead>
         <tr>
           <th class="w-12"></th>
+          <th class="num sortable" data-sort-key="id"   data-sort-type="number" title="Item ID - sort descending to find the most recently added items">ID <span class="sort-arrow"></span></th>
           <th class="sortable" data-sort-key="name"     data-sort-type="string">Name <span class="sort-arrow"></span></th>
           <th class="sortable" data-sort-key="category" data-sort-type="string">Category <span class="sort-arrow"></span></th>
           <th class="sortable" data-sort-key="value"    data-sort-type="string">Value <span class="sort-arrow"></span></th>
@@ -126,6 +127,7 @@ include SRC_DIR . '/header.php';
           <tr data-search="<?= e($searchable) ?>"
               data-category="<?= e($item['category']) ?>"
               data-tags="<?= e($tagSlugs) ?>"
+              data-sort-id="<?= $iid ?>"
               data-sort-name="<?= e(mb_strtolower($item['name'] ?? '')) ?>"
               data-sort-category="<?= e(mb_strtolower($item['category'] ?? '')) ?>"
               data-sort-value="<?= e(mb_strtolower($item['value'] ?? '')) ?>"
@@ -139,6 +141,9 @@ include SRC_DIR . '/header.php';
                 <img src="<?= e(UPLOAD_URL_PREFIX . $item['image_path']) ?>"
                      class="w-12 h-12 rounded object-cover border border-gray-200 dark:border-gray-700" alt="">
               <?php endif ?>
+            </td>
+            <td class="num text-xs text-gray-500 dark:text-gray-400 font-mono">
+              <a href="/item.php?id=<?= $iid ?>" class="hover:underline">#<?= $iid ?></a>
             </td>
             <td>
               <a href="/item.php?id=<?= $iid ?>" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">

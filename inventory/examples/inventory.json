@@ -1,5 +1,5 @@
 {
-    "count": 197,
+    "count": 216,
     "items": [
         {
             "name": "Arduino Uno R3 (CH340 clone, XL)",
@@ -26,6 +26,36 @@
             ]
         },
         {
+            "name": "ESP32-CAM (bare module)",
+            "category": "Board",
+            "subcategory": "ESP32 dev board",
+            "value": "ESP32-S + OV2640",
+            "qty_total": 1,
+            "notes": "Bare ESP32-CAM with OV2640 sensor. Needs an external 5V supply on 5V/GND and an FTDI on UART0 to program (or borrow the MB base from the other ESP32-CAM).",
+            "tags": [
+                "Bluetooth",
+                "Board",
+                "Camera",
+                "ESP32",
+                "WiFi"
+            ]
+        },
+        {
+            "name": "ESP32-CAM with MB programmer base",
+            "category": "Board",
+            "subcategory": "ESP32 dev board",
+            "value": "ESP32-S + OV2640 + MB",
+            "qty_total": 1,
+            "notes": "ESP32-CAM camera board paired with the MB carrier (CH340 USB-to-serial + power) so you can flash it without a separate FTDI. Use the MB during programming, then pop the camera off and run it on its own.",
+            "tags": [
+                "Bluetooth",
+                "Board",
+                "Camera",
+                "ESP32",
+                "WiFi"
+            ]
+        },
+        {
             "name": "Seeed XIAO ESP32-C3",
             "category": "Board",
             "subcategory": "ESP32 dev board",
@@ -35,6 +65,33 @@
             "tags": [
                 "Board",
                 "ESP32 dev board"
+            ]
+        },
+        {
+            "name": "NodeMCU V3 (ESP8266, CH340G)",
+            "category": "Board",
+            "subcategory": "ESP8266 dev board",
+            "value": "ESP8266 + CH340G",
+            "qty_total": 1,
+            "notes": "LoLin \"V3\" form-factor NodeMCU. Wider footprint than the V2 - needs a full-size breadboard or the matching I/O shield to avoid covering both rails. Uses the CH340 driver.",
+            "tags": [
+                "Board",
+                "ESP8266",
+                "NodeMCU",
+                "WiFi"
+            ]
+        },
+        {
+            "name": "ESP-01S WiFi Module",
+            "category": "Board",
+            "subcategory": "ESP8266 module",
+            "value": "ESP8266 ESP-01S",
+            "qty_total": 2,
+            "notes": "Tiny 8-pin ESP8266 module - 1MB flash, two GPIOs broken out (plus RX/TX). Needs 3.3V (not 5V) and a USB-to-serial adapter to flash.",
+            "tags": [
+                "Board",
+                "ESP8266",
+                "WiFi"
             ]
         },
         {
@@ -568,6 +625,29 @@
             ]
         },
         {
+            "name": "0.56\" Red 7-Segment LED Display (1 digit)",
+            "category": "Component",
+            "subcategory": "7-segment display",
+            "value": "0.56\", 1-digit, 10-pin",
+            "qty_total": 1,
+            "notes": "Single-digit red 7-segment display, 10-pin DIP. Common-cathode or common-anode depending on the listing - check with a 3V coin cell and a current-limit resistor before wiring.",
+            "tags": [
+                "7-segment",
+                "Component",
+                "Display",
+                "LED"
+            ]
+        },
+        {
+            "name": "IR LED 5mm 940nm (emitter)",
+            "category": "Component",
+            "subcategory": "LED, 5mm through-hole",
+            "value": "940nm IR",
+            "qty_total": 0,
+            "notes": "TO BUY. 940nm infrared LED, looks like a clear or pale-purple 5mm LED. Used to send remote-control codes. Cheap: bag of 10 for a couple of dollars at any electronics shop or AliExpress. Pair with a BC337 transistor + 220R limit resistor to drive from an Arduino pin at ~15mA (3m range) - drop to 47R or 100R for longer range.",
+            "tags": []
+        },
+        {
             "name": "LED 5mm Blue",
             "category": "Component",
             "subcategory": "LED, 5mm through-hole",
@@ -617,6 +697,33 @@
                 "5mm through-hole",
                 "Component",
                 "LED"
+            ]
+        },
+        {
+            "name": "WH148 10K Stereo Potentiometer (B10K)",
+            "category": "Component",
+            "subcategory": "Potentiometer",
+            "value": "B10K, dual-gang",
+            "qty_total": 1,
+            "notes": "6-pin dual-gang (stereo) 10K linear-taper pot. Two independent tracks share one shaft - usable as a stereo volume control or as two separate single-pots in one body.",
+            "tags": [
+                "Analog",
+                "Component",
+                "Potentiometer"
+            ]
+        },
+        {
+            "name": "TEC1-4905 Peltier Thermoelectric Cooler",
+            "category": "Component",
+            "subcategory": "Thermoelectric (Peltier)",
+            "value": "12V, 36W, 25x25mm",
+            "qty_total": 1,
+            "notes": "Small solid-state heat pump - 25.5 x 25.5 x 5 mm, 4A at 12V. Cold side gets cold only if the hot side is heatsinked; otherwise both sides just get hot.",
+            "tags": [
+                "Component",
+                "Cooling",
+                "Peltier",
+                "Thermoelectric"
             ]
         },
         {
@@ -864,6 +971,20 @@
             ]
         },
         {
+            "name": "Etronix 18S LiPo Voltage Meter (ET0239B)",
+            "category": "Module",
+            "subcategory": "Battery checker",
+            "value": "1S-18S w/ alarm",
+            "qty_total": 1,
+            "notes": "RC-hobby cell checker: plug a LiPo balance lead into the 1S-18S port, see per-cell voltages on the LCD, and get an audible alarm if any cell sags below threshold.",
+            "tags": [
+                "Battery",
+                "LiPo",
+                "Module",
+                "Voltage"
+            ]
+        },
+        {
             "name": "Breadboard 4.5x9.5cm (~400 tie-points)",
             "category": "Module",
             "subcategory": "Breadboard",
@@ -872,6 +993,20 @@
             "notes": "Solderless prototyping.",
             "tags": [
                 "Breadboard"
+            ]
+        },
+        {
+            "name": "NodeMCU V3 I/O Shield (pin breakout)",
+            "category": "Module",
+            "subcategory": "Breakout shield",
+            "value": "NodeMCU V3 carrier",
+            "qty_total": 1,
+            "notes": "Sits under the wide NodeMCU V3 and brings every pin out to a screw-terminal block - no jumper-wire jungle.",
+            "tags": [
+                "Breakout",
+                "ESP8266",
+                "Module",
+                "NodeMCU"
             ]
         },
         {
@@ -884,6 +1019,21 @@
             "tags": [
                 "Character LCD + I2C",
                 "Module"
+            ]
+        },
+        {
+            "name": "DIYMORE Universal Fan Remote Mod Board",
+            "category": "Module",
+            "subcategory": "Fan controller",
+            "value": "mains + IR remote",
+            "qty_total": 1,
+            "notes": "Retrofits an IR remote control onto a plain pull-cord fan. Mains-voltage on the board side - do not breadboard.",
+            "tags": [
+                "Fan",
+                "IR",
+                "Mains",
+                "Module",
+                "Remote"
             ]
         },
         {
@@ -948,6 +1098,34 @@
             ]
         },
         {
+            "name": "MB102 Breadboard Power Supply Module",
+            "category": "Module",
+            "subcategory": "Power / breadboard PSU",
+            "value": "3.3V / 5V rails",
+            "qty_total": 1,
+            "notes": "Snaps onto the power rails of a full-size breadboard and provides selectable 3.3V or 5V on each rail. Input via barrel jack (6.5-12V) or USB. On/off switch and power LED on board.",
+            "tags": [
+                "Breadboard",
+                "Module",
+                "Power",
+                "PSU"
+            ]
+        },
+        {
+            "name": "6-24V to 5V 3A USB Buck Converter",
+            "category": "Module",
+            "subcategory": "Power / buck",
+            "value": "DC-DC, USB-A out",
+            "qty_total": 1,
+            "notes": "Step-down converter with a USB-A jack on the output - good for powering a phone, ESP, or NodeMCU off a 12V lead-acid or LiPo pack.",
+            "tags": [
+                "Buck",
+                "DC-DC",
+                "Module",
+                "Power"
+            ]
+        },
+        {
             "name": "18650 Charger / Protection Board (TP4056, USB-C)",
             "category": "Module",
             "subcategory": "Power / charger",
@@ -984,11 +1162,26 @@
             ]
         },
         {
+            "name": "ESP-01S 5V Relay Module (Tasmota-ready)",
+            "category": "Module",
+            "subcategory": "Relay (WiFi)",
+            "value": "ESP-01S + SRD-05VDC",
+            "qty_total": 1,
+            "notes": "WiFi-controlled relay board that hosts an ESP-01S. Ships configured for Tasmota - flip a switch in the app to drive a mains-class relay. 5V supply required.",
+            "tags": [
+                "ESP8266",
+                "Module",
+                "Relay",
+                "Tasmota",
+                "WiFi"
+            ]
+        },
+        {
             "name": "2-channel Songle relay module",
             "category": "Module",
             "subcategory": "Relay, optocoupler-isolated",
             "value": "SRD-05VDC-SL-C x2",
-            "qty_total": 1,
+            "qty_total": 2,
             "notes": "Active-LOW (low-level trigger). JDVcc-Vcc jumper currently in place.",
             "tags": [
                 "Module",
@@ -1006,6 +1199,35 @@
             "tags": [
                 "Module",
                 "Servo"
+            ]
+        },
+        {
+            "name": "W1209 Temperature Controller",
+            "category": "Module",
+            "subcategory": "Temperature controller",
+            "value": "NTC + relay + 7-seg",
+            "qty_total": 3,
+            "notes": "Standalone thermostat: 10K NTC probe, 3-digit 7-seg display, 10A relay, three buttons to set the trip point and hysteresis. No microcontroller needed. 12V supply.",
+            "tags": [
+                "Module",
+                "Relay",
+                "Temperature",
+                "Thermostat"
+            ]
+        },
+        {
+            "name": "CP2102 USB-to-TTL UART Module",
+            "category": "Module",
+            "subcategory": "USB-to-serial",
+            "value": "CP2102",
+            "qty_total": 1,
+            "notes": "USB-to-serial adapter for flashing ESP-01S, bare ESP32-CAM, and other boards without onboard USB. 5V and 3.3V outputs available.",
+            "tags": [
+                "Module",
+                "Programmer",
+                "Serial",
+                "UART",
+                "USB"
             ]
         },
         {
@@ -1781,7 +2003,7 @@
             "category": "Sensor",
             "subcategory": "Audio / microphone",
             "value": "KY-037",
-            "qty_total": 1,
+            "qty_total": 2,
             "notes": "High-sensitivity electret + LM393 comparator.",
             "tags": [
                 "audio",
@@ -1859,7 +2081,7 @@
             "category": "Sensor",
             "subcategory": "IR receiver (~38kHz)",
             "value": "KY-022",
-            "qty_total": 1,
+            "qty_total": 2,
             "notes": "For decoding TV-remote-style signals.",
             "tags": [
                 "~38kHz",
@@ -1872,7 +2094,7 @@
             "category": "Sensor",
             "subcategory": "IR reflective",
             "value": "FC-51 (generic)",
-            "qty_total": 2,
+            "qty_total": 3,
             "notes": "Lines 33 + 52 (two orders).",
             "tags": [
                 "IR reflective",
@@ -1922,11 +2144,25 @@
             "category": "Sensor",
             "subcategory": "Moisture",
             "value": "(generic resistive)",
-            "qty_total": 2,
+            "qty_total": 3,
             "notes": "Lines 21 + 54 (two orders).",
             "tags": [
                 "Moisture",
                 "Sensor"
+            ]
+        },
+        {
+            "name": "Soil Moisture Probe Meter (standalone)",
+            "category": "Sensor",
+            "subcategory": "Moisture (standalone)",
+            "value": "analog meter",
+            "qty_total": 1,
+            "notes": "Standalone soil moisture meter with a probe and analog dial - no microcontroller required. Stick in a pot, read the needle.",
+            "tags": [
+                "Moisture",
+                "Sensor",
+                "Soil",
+                "Standalone"
             ]
         },
         {
@@ -1971,7 +2207,7 @@
             "category": "Sensor",
             "subcategory": "Pressure / altitude",
             "value": "BMP280",
-            "qty_total": 1,
+            "qty_total": 2,
             "notes": "I2C; also reads temperature.",
             "tags": [
                 "altitude",
@@ -1984,7 +2220,7 @@
             "category": "Sensor",
             "subcategory": "Temperature + humidity",
             "value": "DHT11",
-            "qty_total": 2,
+            "qty_total": 3,
             "notes": "Lines 17 + 51 (two orders).",
             "tags": [
                 "Sensor",
@@ -2184,6 +2420,34 @@
             "tags": [
                 "Switch",
                 "Tactile push-button"
+            ]
+        },
+        {
+            "name": "DT3 USB Cable Tester",
+            "category": "Tool",
+            "subcategory": "Cable tester",
+            "value": "Type-C / Micro / Lightning",
+            "qty_total": 1,
+            "notes": "Diagnoses USB data cables: power-only vs full data, short-circuit detection, individual line on/off switching for iOS and Android cables. Useful for proving a \"weird\" cable is the cause of a flashing failure.",
+            "tags": [
+                "Cable",
+                "Tool",
+                "USB"
+            ]
+        },
+        {
+            "name": "CH341A USB EEPROM / Flash Programmer",
+            "category": "Tool",
+            "subcategory": "Programmer",
+            "value": "CH341A, 24/25-series",
+            "qty_total": 1,
+            "notes": "USB programmer for 24-series I2C EEPROMs and 25-series SPI flash chips (BIOS / router firmware). Comes with a SOIC-8 clip on most listings.",
+            "tags": [
+                "EEPROM",
+                "Flash",
+                "Programmer",
+                "Tool",
+                "USB"
             ]
         },
         {

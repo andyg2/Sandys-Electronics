@@ -47,6 +47,58 @@ $ITEM_ALIASES = [
     'XIAO ESP32-C3'                => 'Seeed XIAO ESP32-C3',
     'ESP32 NodeMCU'                => 'ESP32 NodeMCU-32S',
     'Arduino Uno'                  => 'Arduino Uno R3 (CH340 clone, XL)',
+    'ESP32-CAM'                    => 'ESP32-CAM with MB programmer base',
+    'ESP32-CAM (MB)'               => 'ESP32-CAM with MB programmer base',
+    'ESP32-CAM Module'             => 'ESP32-CAM with MB programmer base',
+    'ESP32-CAM Development Board'  => 'ESP32-CAM with MB programmer base',
+    'ESP32-CAM bare'               => 'ESP32-CAM (bare module)',
+    'NodeMCU V3'                   => 'NodeMCU V3 (ESP8266, CH340G)',
+    'NodeMCU'                      => 'NodeMCU V3 (ESP8266, CH340G)',
+    'NodeMCU V3 ESP8266'           => 'NodeMCU V3 (ESP8266, CH340G)',
+    'NodeMCU ESP8266 V3'           => 'NodeMCU V3 (ESP8266, CH340G)',
+    'NodeMCU V3 I/O Shield'        => 'NodeMCU V3 I/O Shield (pin breakout)',
+    'NodeMCU I/O Shield'           => 'NodeMCU V3 I/O Shield (pin breakout)',
+    'ESP-01S'                      => 'ESP-01S WiFi Module',
+    'ESP-01S Module'               => 'ESP-01S WiFi Module',
+    'ESP8266 ESP-01S'              => 'ESP-01S WiFi Module',
+
+    // New modules
+    'ESP-01S Relay Module'         => 'ESP-01S 5V Relay Module (Tasmota-ready)',
+    'ESP-01S 5V Relay'             => 'ESP-01S 5V Relay Module (Tasmota-ready)',
+    'Tasmota Relay'                => 'ESP-01S 5V Relay Module (Tasmota-ready)',
+    'W1209'                        => 'W1209 Temperature Controller',
+    'W1209 Thermostat'             => 'W1209 Temperature Controller',
+    'W1209 Temperature Module'     => 'W1209 Temperature Controller',
+    'CP2102'                       => 'CP2102 USB-to-TTL UART Module',
+    'CP2102 USB-to-Serial'         => 'CP2102 USB-to-TTL UART Module',
+    'USB-to-TTL Adapter'           => 'CP2102 USB-to-TTL UART Module',
+    'MB102'                        => 'MB102 Breadboard Power Supply Module',
+    'MB102 Power Supply'           => 'MB102 Breadboard Power Supply Module',
+    'Breadboard PSU'               => 'MB102 Breadboard Power Supply Module',
+    'Buck Converter'               => '6-24V to 5V 3A USB Buck Converter',
+    'DC-DC Buck Converter'         => '6-24V to 5V 3A USB Buck Converter',
+    '6-24V Buck Converter'         => '6-24V to 5V 3A USB Buck Converter',
+
+    // New components
+    'TEC1-4905'                    => 'TEC1-4905 Peltier Thermoelectric Cooler',
+    'Peltier'                      => 'TEC1-4905 Peltier Thermoelectric Cooler',
+    'Peltier Module'               => 'TEC1-4905 Peltier Thermoelectric Cooler',
+    'TEC Peltier'                  => 'TEC1-4905 Peltier Thermoelectric Cooler',
+    'WH148 Potentiometer'          => 'WH148 10K Stereo Potentiometer (B10K)',
+    'WH148 10K'                    => 'WH148 10K Stereo Potentiometer (B10K)',
+    'Stereo Potentiometer'         => 'WH148 10K Stereo Potentiometer (B10K)',
+    'Dual-gang 10K Potentiometer'  => 'WH148 10K Stereo Potentiometer (B10K)',
+    '0.56\" 7-Segment LED Display' => '0.56" Red 7-Segment LED Display (1 digit)',
+    '1-digit 7-Segment Display'    => '0.56" Red 7-Segment LED Display (1 digit)',
+    'Red 7-Segment 1-digit'        => '0.56" Red 7-Segment LED Display (1 digit)',
+    'Single-digit 7-Segment'       => '0.56" Red 7-Segment LED Display (1 digit)',
+    'Soil Moisture Probe Meter'    => 'Soil Moisture Probe Meter (standalone)',
+    'Standalone Soil Probe'        => 'Soil Moisture Probe Meter (standalone)',
+
+    // Boards - alt forms
+    'ESP-01S Relay (Tasmota)'           => 'ESP-01S 5V Relay Module (Tasmota-ready)',
+    'ESP-01S 5V Relay Module (Tasmota)' => 'ESP-01S 5V Relay Module (Tasmota-ready)',
+    'WH148 10K Stereo Potentiometer'    => 'WH148 10K Stereo Potentiometer (B10K)',
 
     // Capacitors
     'Capacitor 470uF'                  => 'Capacitor 470uF (electrolytic, mixed voltage)',
@@ -69,12 +121,25 @@ $ITEM_ALIASES = [
     'Resistor 10k'     => 'Resistor 10K (1/8W 1%)',
     '100 Ohm Resistor' => 'Resistor 100R (1/8W 1%)',
     '100k Ohm Resistor'=> 'Resistor 100K (1/8W 1%)',
+    // 1/4W variants (we only stock 1/8W)
+    'Resistor 10K (1/4W 1%)'  => 'Resistor 10K (1/8W 1%)',
+    'Resistor 220R (1/4W 1%)' => 'Resistor 220R (1/8W 1%)',
+    'Resistor 1K (1/4W 1%)'   => 'Resistor 1K (1/8W 1%)',
+    'Resistor 470R (1/4W 1%)' => 'Resistor 470R (1/8W 1%)',
+    'Resistor 330R (1/4W 1%)' => 'Resistor 330R (1/8W 1%)',
+    '10K Resistor'    => 'Resistor 10K (1/8W 1%)',
+    '220 Ohm Resistor'=> 'Resistor 220R (1/8W 1%)',
+    '1K Resistor'     => 'Resistor 1K (1/8W 1%)',
 
     // LEDs
     'Yellow LED' => 'LED 5mm Yellow',
     'Green LED'  => 'LED 5mm Green',
     'Blue LED'   => 'LED 5mm Blue',
     'Red LED'    => 'LED 5mm Red',
+    '5mm Red LED'    => 'LED 5mm Red',
+    '5mm Green LED'  => 'LED 5mm Green',
+    '5mm Blue LED'   => 'LED 5mm Blue',
+    '5mm Yellow LED' => 'LED 5mm Yellow',
 
     // Sensors / modules
     'SW-420 Vibration switch'    => 'SW-420 Vibration Switch Module',
@@ -93,6 +158,7 @@ $ITEM_ALIASES = [
     'Breadboard 830-point'                 => 'Breadboard 4.5x9.5cm (~400 tie-points)',
     'Breadboard 4.5x9.5cm'                 => 'Breadboard 4.5x9.5cm (~400 tie-points)',
     'Breadboard (half-size, 400 tie-point)'=> 'Breadboard 4.5x9.5cm (~400 tie-points)',
+    'Mini Breadboard'                      => 'Breadboard 4.5x9.5cm (~400 tie-points)',
 
     // Jumpers
     'Jumper Wires M-M'                              => 'Jumper Wire M-M, 40pc',
@@ -104,10 +170,13 @@ $ITEM_ALIASES = [
     'Jumper Wires F-M'                              => 'Jumper Wire F-M, 20pc',
     'DuPont Jumper Wires (M-M, M-F, F-F)'           => 'Jumper Wire M-M, 40pc',
     'DuPont jumper wires (M-M and M-F assortment)'  => 'Jumper Wire M-M, 40pc',
+    'DuPont Jumper Wires Mixed'                     => 'Jumper Wire M-M, 40pc',
 
     // Buttons
     'Tactile Push-buttons' => 'Tactile Push-button Switch 3x6x3.1mm (4-pin, black/red)',
     'push button'          => 'Tactile Push-button Switch 3x6x3.1mm (4-pin, black/red)',
+    'Push Button'          => 'Tactile Push-button Switch 3x6x4.3mm (white pin)',
+    'Tactile Push Button'  => 'Tactile Push-button Switch 3x6x4.3mm (white pin)',
 
     // External to inventory - silently dropped (mentioned in the project description anyway)
     'USB-C cable'                                              => null,
@@ -120,6 +189,18 @@ $ITEM_ALIASES = [
     '12V LED strip (short length, low-voltage)'                => null,
     '12V DC power supply (1A+, matching barrel jack for the strip)' => null,
     '18650 Battery'                                            => null,
+    'Active Buzzer 5V'                                         => null,
+    'Active Buzzer'                                            => null,
+    'Passive Buzzer'                                           => null,
+    '9V Power Supply 1A'                                       => null,
+    '9V Battery'                                               => null,
+    '12V Power Supply'                                         => null,
+    '12V Wall Adapter'                                         => null,
+    'Heatsink (40mm aluminum)'                                 => null,
+    'Heatsink for Peltier'                                     => null,
+    'Aluminum Heatsink'                                        => null,
+    'Thermal Paste'                                            => null,
+    'CPU Heatsink'                                             => null,
 ];
 
 function resolveItemName(string $raw, array $aliases, PDOStatement $lookup): ?int
