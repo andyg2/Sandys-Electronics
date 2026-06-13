@@ -93,6 +93,7 @@ include SRC_DIR . '/header.php';
     <table class="table-default" id="projects-table">
       <thead>
         <tr>
+          <th class="num sortable" data-sort-key="id" data-sort-type="number" title="Project ID - sort descending to find the most recently added projects">ID <span class="sort-arrow"></span></th>
           <th class="sortable" data-sort-key="name"   data-sort-type="string">Name <span class="sort-arrow"></span></th>
           <th class="sortable" data-sort-key="status" data-sort-type="string">Status <span class="sort-arrow"></span></th>
           <th class="sortable" data-sort-key="diff"   data-sort-type="string">Level <span class="sort-arrow"></span></th>
@@ -120,11 +121,15 @@ include SRC_DIR . '/header.php';
               data-diff="<?= e($diff) ?>"
               data-status="<?= e($p['status']) ?>"
               data-tags="<?= e($tagSlugs) ?>"
+              data-sort-id="<?= $pid ?>"
               data-sort-name="<?= e(mb_strtolower($p['name'])) ?>"
               data-sort-status="<?= e($p['status']) ?>"
               data-sort-diff="<?= e($diffSortKey) ?>"
               data-sort-items="<?= (int) $p['distinct_items'] ?>"
               data-sort-units="<?= (int) $p['total_units'] ?>">
+            <td class="num text-xs text-gray-500 dark:text-gray-400 font-mono">
+              <a href="/project.php?id=<?= $pid ?>" class="hover:underline">#<?= $pid ?></a>
+            </td>
             <td>
               <a href="/project.php?id=<?= $pid ?>"
                  class="text-blue-600 dark:text-blue-400 hover:underline font-medium">
