@@ -250,6 +250,6 @@ include SRC_DIR . '/header.php';
   }
 </script>
 <script src="/assets/breadboard.js?v=7"></script>
-<script src="/assets/project_render.js?v=1"></script>
+<script src="/assets/project_render.js?v=2"></script>
 
 <?php include SRC_DIR . '/footer.php';

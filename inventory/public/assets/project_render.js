@@ -26,7 +26,13 @@
     const target = document.getElementById('md-rendered');
     if (!src || !target || typeof marked === 'undefined') return;
     marked.setOptions({ breaks: true, gfm: true });
-    target.innerHTML = marked.parse(src.textContent);
+    // PHP wraps the description in <script type="text/markdown"> with
+    // htmlspecialchars(), so textContent returns "&lt;div&gt;" literally for
+    // any embedded HTML. Decode entities before parsing so inline <img> /
+    // <div> tags reach marked.js as real HTML.
+    const decoder = document.createElement('textarea');
+    decoder.innerHTML = src.textContent;
+    target.innerHTML = marked.parse(decoder.value);
   }
 
   function convertMermaidCodeBlocks() {
