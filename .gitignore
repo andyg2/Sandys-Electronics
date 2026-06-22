@@ -10,3 +10,4 @@ Thumbs.db
 # Build / test artifacts
 *.log
 *.bak
+/.work-log
