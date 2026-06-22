@@ -107,15 +107,20 @@ Power rails are named `+5V` (or `VCC`) and `GND`. They can be qualified `_T` (to
 ```json
 {
   "components": [
-    { "type": "ic",        "name": "NE555", "pin1_at": "E5", "pins": 8 },
-    { "type": "led",       "color": "red",  "anode": "B15", "cathode": "B16" },
-    { "type": "resistor",  "value": "10K",  "from": "B12", "to": "F12" },
-    { "type": "capacitor", "value": "47uF", "positive": "B14", "negative": "GND_B" },
-    { "type": "wire",      "from": "A5",    "to": "GND_T",     "color": "#1f2937" },
-    { "type": "button",    "at": "C8",      "label": "S1" }
+    { "type": "ic", "name": "NE555", "pin1_at": "E5", "pins": 8 },
+    { "type": "led", "color": "red", "anode": "B15", "cathode": "B16" },
+    { "type": "resistor", "value": "10K", "from": "B12", "to": "F12" },
+    {
+      "type": "capacitor",
+      "value": "47uF",
+      "positive": "B14",
+      "negative": "GND_B"
+    },
+    { "type": "wire", "from": "A5", "to": "GND_T", "color": "#1f2937" },
+    { "type": "button", "at": "C8", "label": "S1" }
   ],
   "external": [
-    { "from": "Arduino Uno 5V",  "to": "+5V" },
+    { "from": "Arduino Uno 5V", "to": "+5V" },
     { "from": "Arduino Uno GND", "to": "GND" }
   ]
 }
@@ -136,7 +141,7 @@ Power rails are named `+5V` (or `VCC`) and `GND`. They can be qualified `_T` (to
 
 Take an NE555 at `pin1_at: "E5"`. The chip body sits across the gully between rows E and F. Pin numbering counter-clockwise from the notch:
 
-- Pin 1 (bottom-left): col 5 top half  -> any of A5/B5/C5/D5
+- Pin 1 (bottom-left): col 5 top half -> any of A5/B5/C5/D5
 - Pin 2: col 6 top
 - Pin 3: col 7 top
 - Pin 4 (bottom-right): col 8 top
@@ -157,10 +162,10 @@ So wiring pin 4 to +5V means a wire from any A-D in col 8 to the +5V rail.
 
 `inventory/validate_breadboard.php` mirrors the renderer geometry exactly. It catches three classes of bug that don't show up by eye until the SVG renders:
 
-| Check            | What it flags                                                                                                                                  |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| `body_overlap`   | Two component bodies (resistor / cap / IC / module / button / pot / transistor / LED) whose axis-aligned bounding boxes intersect on the SVG.  |
-| `hole_conflict`  | Two component legs that need the same physical breadboard hole. Real-world: only one lead fits per hole. Move one leg to a different row.      |
+| Check            | What it flags                                                                                                                                          |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `body_overlap`   | Two component bodies (resistor / cap / IC / module / button / pot / transistor / LED) whose axis-aligned bounding boxes intersect on the SVG.          |
+| `hole_conflict`  | Two component legs that need the same physical breadboard hole. Real-world: only one lead fits per hole. Move one leg to a different row.              |
 | `gully_crossing` | A non-IC component (resistor / cap / LED / wire) with one leg in rows A-E and the other in F-J of the **same column** - separate nodes, no connection. |
 
 Use it three ways:
@@ -189,12 +194,13 @@ JSON output mode (`--format=json`) returns `{ "issues": [...], "ok": true|false 
 
 ```js
 const proposed = JSON.stringify(layout);
-const out = require('child_process').execSync(
-  'php inventory/validate_breadboard.php --json --format=json',
-  { input: proposed }
-).toString();
+const out = require("child_process")
+  .execSync("php inventory/validate_breadboard.php --json --format=json", {
+    input: proposed,
+  })
+  .toString();
 const { issues, ok } = JSON.parse(out);
-if (!ok) /* feed issues back to the agent and ask it to fix */;
+if (!ok) /* feed issues back to the agent and ask it to fix */ ;
 ```
 
 **Rule of thumb when authoring a new layout:** keep component bodies in rows D/E (top half) and F/G (bottom half) so they cluster around the gully, route rail wires from rows A and J, and never let two leg positions collide. `validate_breadboard.php` flags the rest.
@@ -205,7 +211,7 @@ if (!ok) /* feed issues back to the agent and ask it to fix */;
 - **Always include a power-source node styled in the green `pwr` classDef.** The power node must visibly connect to whatever consumes power (USB-B port, VIN, JST connector, etc.).
 - Use this colour scheme exactly so diagrams render consistently across the corpus:
 
-```
+```txt
 classDef pwr  fill:#10b981,color:#fff,stroke:#047857
 classDef pin  fill:#1e6fd6,color:#fff,stroke:#003c80
 classDef gnd  fill:#333,color:#fff,stroke:#000
@@ -289,7 +295,7 @@ The two complete workflows in `inventory/workflows/` are designed for the Claude
 
 Original 20-project run. Six brainstorm lenses fan out in parallel, a shortlist agent picks 22-26, each shortlisted idea pipelines through Author → Critique → Refine independently, a judge picks the final 20 for variety.
 
-```
+```txt
 args:
   inventory: <text snapshot from _generate_inventory_snapshot.php>
 
