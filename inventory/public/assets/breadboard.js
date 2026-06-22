@@ -145,6 +145,17 @@
     el('feDropShadow', { dx: 0, dy: 1.5, stdDeviation: 1.2, 'flood-color': '#000', 'flood-opacity': 0.18 }, shadow);
     const ringFilter = el('filter', { id: 'bb-ring', x: '-50%', y: '-50%', width: '200%', height: '200%' }, defs);
     el('feGaussianBlur', { in: 'SourceGraphic', stdDeviation: 0.8 }, ringFilter);
+    // Yellow outline glow applied to components on the active node when a hole
+    // is hovered/clicked. Dilates the alpha channel, paints the dilated outline
+    // gold, then composites with the original component on top.
+    const hl = el('filter', { id: 'bb-highlight', x: '-30%', y: '-30%', width: '160%', height: '160%' }, defs);
+    el('feMorphology', { in: 'SourceAlpha', operator: 'dilate', radius: 2, result: 'thick' }, hl);
+    el('feFlood', { 'flood-color': '#f59e0b', 'flood-opacity': 0.95, result: 'goldFill' }, hl);
+    el('feComposite', { in: 'goldFill', in2: 'thick', operator: 'in', result: 'goldOutline' }, hl);
+    el('feGaussianBlur', { in: 'goldOutline', stdDeviation: 0.6, result: 'goldGlow' }, hl);
+    const merge = el('feMerge', {}, hl);
+    el('feMergeNode', { in: 'goldGlow' }, merge);
+    el('feMergeNode', { in: 'SourceGraphic' }, merge);
 
     // z-stack from bottom to top:
     //   1. board (background paint)
@@ -227,21 +238,58 @@
     ctx.tiesByNode[node].push({ el: r, x, y });
   }
 
+  // Register a component group as electrically attached to one or more nodes.
+  // When the user later hovers/clicks a hole on that node, the group gets the
+  // bb-highlight filter so the kid can see "these are the parts on this rail".
+  function bindNodes(ctx, g, ...positions) {
+    if (!g) return;
+    if (!ctx.componentsByNode) ctx.componentsByNode = {};
+    for (const pos of positions) {
+      if (!pos) continue;
+      const r = (typeof pos === 'string') ? resolvePos(pos) : pos;
+      if (!r || !r.node) continue;
+      if (!ctx.componentsByNode[r.node]) ctx.componentsByNode[r.node] = [];
+      if (!ctx.componentsByNode[r.node].includes(g)) ctx.componentsByNode[r.node].push(g);
+    }
+  }
+
+  function setComponentHighlight(g, on) {
+    if (!g) return;
+    const baseShadow = 'url(#bb-shadow)';
+    if (on) {
+      g.setAttribute('filter', 'url(#bb-highlight)');
+    } else {
+      const had = g.getAttribute('data-base-filter');
+      g.setAttribute('filter', had || baseShadow);
+    }
+  }
+
   function highlightNode(ctx, node, hover) {
+    // Reset all tie holes
     Object.values(ctx.tiesByNode).forEach(arr => arr.forEach(({ el: r }) => {
       r.setAttribute('fill', '#fafaf6');
       r.setAttribute('stroke', '#a09275');
       r.setAttribute('stroke-width', 0.7);
     }));
+    // Reset all previously-highlighted components
+    if (ctx.lastHighlightedComponents) {
+      ctx.lastHighlightedComponents.forEach(g => setComponentHighlight(g, false));
+      ctx.lastHighlightedComponents = null;
+    }
     if (!node) {
       if (ctx.hintLabel) ctx.hintLabel.style.display = '';
       return;
     }
+    // Highlight tie holes on the node
     (ctx.tiesByNode[node] || []).forEach(({ el: r }) => {
       r.setAttribute('fill', '#fef08a');
       r.setAttribute('stroke', '#a16207');
       r.setAttribute('stroke-width', 1.4);
     });
+    // Highlight components attached to the node
+    const comps = (ctx.componentsByNode && ctx.componentsByNode[node]) || [];
+    comps.forEach(g => setComponentHighlight(g, true));
+    ctx.lastHighlightedComponents = comps.slice();
     if (ctx.hintLabel) ctx.hintLabel.style.display = 'none';
   }
 
@@ -285,22 +333,71 @@
     const mx = (a.x + b.x) / 2 + px * lift;
     const my = (a.y + b.y) / 2 + py * lift;
 
+    // Wrap wire elements in a group so we can highlight the whole jumper at
+    // once when its electrical node is selected.
+    const g = el('g', { class: 'bb-wire', filter: 'url(#bb-shadow)' }, layer);
     el('path', {
       d: `M${a.x} ${a.y} Q ${mx} ${my} ${b.x} ${b.y}`,
       fill: 'none', stroke: colorAttr,
       'stroke-width': flying ? 2.6 : 2.4,
       'stroke-linecap': 'round',
-      filter: 'url(#bb-shadow)',
-    }, layer);
+    }, g);
+    el('circle', { cx: a.x, cy: a.y, r: 3.2, fill: colorAttr }, g);
+    el('circle', { cx: b.x, cy: b.y, r: 3.2, fill: colorAttr }, g);
+    el('circle', { cx: a.x - 1, cy: a.y - 1, r: 1.2, fill: '#fff', opacity: 0.55 }, g);
+    el('circle', { cx: b.x - 1, cy: b.y - 1, r: 1.2, fill: '#fff', opacity: 0.55 }, g);
 
-    // End caps + a "barrel" highlight near each cap so the wire reads as
-    // a real silicone jumper rather than a flat line.
-    el('circle', { cx: a.x, cy: a.y, r: 3.2, fill: colorAttr }, layer);
-    el('circle', { cx: b.x, cy: b.y, r: 3.2, fill: colorAttr }, layer);
-    el('circle', { cx: a.x - 1, cy: a.y - 1, r: 1.2, fill: '#fff', opacity: 0.55 }, layer);
-    el('circle', { cx: b.x - 1, cy: b.y - 1, r: 1.2, fill: '#fff', opacity: 0.55 }, layer);
-
+    bindNodes(ctx, g, a, b);
     return { a, b, flying, color: colorAttr };
+  }
+
+  // ---- Resistor colour-band code (5-band, 1% metal film) ----
+
+  const BAND_DIGIT_COLORS = [
+    '#1a1a1a', // 0 black
+    '#6b3410', // 1 brown
+    '#dc2626', // 2 red
+    '#ea580c', // 3 orange
+    '#facc15', // 4 yellow
+    '#16a34a', // 5 green
+    '#1d4ed8', // 6 blue
+    '#7c3aed', // 7 violet
+    '#6b7280', // 8 grey
+    '#fafafa', // 9 white
+  ];
+  const BAND_GOLD   = '#d4a017';
+  const BAND_SILVER = '#b8b8b8';
+
+  function parseResistorOhms(value) {
+    if (value == null) return null;
+    const s = String(value).trim().toUpperCase().replace(/Ω/g, '').replace(/OHMS?/g, '');
+    const m = s.match(/^([\d.]+)\s*([RKM]?)$/);
+    if (!m) return null;
+    const num = parseFloat(m[1]);
+    if (!isFinite(num) || num <= 0) return null;
+    const mult = m[2] === 'M' ? 1e6 : m[2] === 'K' ? 1e3 : 1;
+    return num * mult;
+  }
+
+  function fiveBandFor(ohms) {
+    if (!isFinite(ohms) || ohms <= 0) return null;
+    let k = Math.floor(Math.log10(ohms)) - 2;
+    let N = Math.round(ohms / Math.pow(10, k));
+    if (N >= 1000) { k++; N = Math.round(ohms / Math.pow(10, k)); }
+    if (N < 100 && k > -2) { k--; N = Math.round(ohms / Math.pow(10, k)); }
+    if (k < -2 || k > 9 || N < 100 || N > 999) return null;
+    return {
+      d1:   Math.floor(N / 100),
+      d2:   Math.floor((N % 100) / 10),
+      d3:   N % 10,
+      mult: k,
+    };
+  }
+
+  function multColor(k) {
+    if (k === -2) return BAND_SILVER;
+    if (k === -1) return BAND_GOLD;
+    return BAND_DIGIT_COLORS[k] || '#1f2937';
   }
 
   function drawResistor(svg, ctx, from, to, value, itemId) {
@@ -321,9 +418,32 @@
     el('line', { x1: -bodyW / 2 - leadLen, y1: 0, x2: -bodyW / 2, y2: 0, stroke: '#7a6b4d', 'stroke-width': 1.4 }, g);
     el('line', { x1:  bodyW / 2 + leadLen, y1: 0, x2:  bodyW / 2, y2: 0, stroke: '#7a6b4d', 'stroke-width': 1.4 }, g);
     el('rect', { x: -bodyW / 2, y: -bodyH / 2, width: bodyW, height: bodyH, rx: 3, fill: '#d9b385', stroke: '#7a4f1f', 'stroke-width': 0.8 }, g);
-    el('rect', { x: -bodyW / 2 + 4, y: -bodyH / 2, width: 2, height: bodyH, fill: '#1f2937', opacity: 0.55 }, g);
-    el('rect', { x: -bodyW / 2 + 8, y: -bodyH / 2, width: 2, height: bodyH, fill: '#dc2626', opacity: 0.6 }, g);
-    el('rect', { x:  bodyW / 2 - 6, y: -bodyH / 2, width: 2, height: bodyH, fill: '#a16207', opacity: 0.6 }, g);
+
+    // 5-band code (1% metal film). Falls back to 3 generic stripes if the
+    // value can't be parsed (e.g. "POT" or "N/A").
+    const bands = fiveBandFor(parseResistorOhms(value));
+    if (bands) {
+      const bandSpec = [
+        { x: -10,  c: BAND_DIGIT_COLORS[bands.d1] },
+        { x: -6.5, c: BAND_DIGIT_COLORS[bands.d2] },
+        { x: -3,   c: BAND_DIGIT_COLORS[bands.d3] },
+        { x:  0.5, c: multColor(bands.mult) },
+        { x:  8,   c: BAND_DIGIT_COLORS[1] }, // 1% tolerance -> brown
+      ];
+      const bandW = 2;
+      bandSpec.forEach(({ x, c }) => {
+        el('rect', {
+          x: x - bandW / 2, y: -bodyH / 2,
+          width: bandW, height: bodyH,
+          fill: c,
+          stroke: '#3b2c14', 'stroke-width': 0.25,
+        }, g);
+      });
+    } else {
+      el('rect', { x: -bodyW / 2 + 4, y: -bodyH / 2, width: 2, height: bodyH, fill: '#1f2937', opacity: 0.55 }, g);
+      el('rect', { x: -bodyW / 2 + 8, y: -bodyH / 2, width: 2, height: bodyH, fill: '#dc2626', opacity: 0.6 }, g);
+      el('rect', { x:  bodyW / 2 - 6, y: -bodyH / 2, width: 2, height: bodyH, fill: '#a16207', opacity: 0.6 }, g);
+    }
     if (value) {
       let labelRot = -angleDeg;
       if (angleDeg > 90 || angleDeg < -90) labelRot += 180;
@@ -333,6 +453,7 @@
         transform: `rotate(${labelRot})`,
       }, g).textContent = value;
     }
+    bindNodes(ctx, g, a, b);
     attachHover(g, ctx, itemId);
   }
 
@@ -377,6 +498,7 @@
       el('text', { x: a.x, y: bulbY + 3.5, 'font-size': 11, 'font-family': 'monospace', 'font-weight': 'bold', fill: '#b91c1c', 'text-anchor': 'middle' }, g).textContent = '+';
       el('rect', { x: b.x - 4, y: bulbY - r + 2, width: 8, height: 2.5, fill: '#fff', opacity: 0.95 }, g);
     }
+    bindNodes(ctx, g, a, b);
     attachHover(g, ctx, itemId);
   }
 
@@ -397,6 +519,7 @@
     el('ellipse', { cx: mx - 3, cy: my, rx: 3, ry: 4, fill: '#fff', opacity: 0.55 }, g);
     el('text', { x: a.x, y: a.y - 6, 'font-size': 8, 'font-family': 'monospace', 'font-weight': 'bold', fill: '#b91c1c', 'text-anchor': 'middle' }, ctx.componentLayer).textContent = '+';
     el('text', { x: c.x, y: c.y - 6, 'font-size': 8, 'font-family': 'monospace', 'font-weight': 'bold', fill: '#1f2937', 'text-anchor': 'middle' }, ctx.componentLayer).textContent = '-';
+    bindNodes(ctx, g, a, c);
     attachHover(g, ctx, itemId);
   }
 
@@ -455,6 +578,12 @@
     el('text', { x: (x1 + x2) / 2, y: (yTop + yBot) / 2 + 4, 'font-size': 10, 'font-family': 'monospace', fill: palette.label, 'text-anchor': 'middle', 'font-weight': 'bold' }, g).textContent = name;
     const pin1Y = p1.row === 'E' ? yTop + 4 : yBot - 4;
     el('circle', { cx: colX(p1.col), cy: pin1Y, r: 2.5, fill: '#fde047', stroke: '#a16207', 'stroke-width': 0.8 }, g);
+    // Bind every pin's node so highlighting any one rail also lights the chip.
+    const pinTopRow = p1.row === 'E' ? 'E' : 'F';
+    const pinBotRow = p1.row === 'E' ? 'F' : 'E';
+    for (let i = 0; i < perSide; i++) {
+      bindNodes(ctx, g, `${pinTopRow}${p1.col + i}`, `${pinBotRow}${p1.col + i}`);
+    }
     attachHover(g, ctx, itemId);
   }
 
@@ -479,6 +608,8 @@
       el('text', { x, y: c.y - 7, 'font-size': 7, 'font-family': 'monospace', fill: '#fafafa', 'text-anchor': 'middle' }, g).textContent = order[i + 1];
     }
     if (name) el('text', { x: c.x, y: c.y + 22, 'font-size': 8, 'font-family': 'monospace', fill: '#1c1917', 'text-anchor': 'middle', 'font-weight': 'bold' }, g).textContent = name;
+    // 3 legs: at-1, at, at+1 in the same row
+    bindNodes(ctx, g, `${c.row}${c.col - 1}`, `${c.row}${c.col}`, `${c.row}${c.col + 1}`);
     attachHover(g, ctx, itemId);
   }
 
@@ -505,6 +636,7 @@
     if (label) el('text', { x: cx, y: cy - sz / 2 - 4, 'font-size': 8, 'font-family': 'monospace', fill: '#1f2937', 'text-anchor': 'middle', 'font-weight': 'bold' }, g).textContent = label;
     // pin dots so the kid sees which 4 holes the button straddles
     [tl, tr, bl, br].forEach(p => el('circle', { cx: p.x, cy: p.y, r: 2.6, fill: '#475569' }, g));
+    bindNodes(ctx, g, tl, tr, bl, br);
     attachHover(g, ctx, itemId);
   }
 
@@ -525,6 +657,7 @@
     el('circle', { cx: c.x - TIE, cy: c.y, r: 2.6, fill: '#475569' }, g);
     el('circle', { cx: c.x,        cy: c.y, r: 2.6, fill: '#475569' }, g);
     el('circle', { cx: c.x + TIE, cy: c.y, r: 2.6, fill: '#475569' }, g);
+    bindNodes(ctx, g, `${c.row}${c.col - 1}`, `${c.row}${c.col}`, `${c.row}${c.col + 1}`);
     attachHover(g, ctx, itemId);
   }
 
@@ -559,6 +692,7 @@
         el('text', { x: p.x, y: ly, 'font-size': 7, 'font-family': 'monospace', fill: '#1f2937', 'text-anchor': 'middle' }, g).textContent = label;
       }
     });
+    bindNodes(ctx, g, ...positions);
     attachHover(g, ctx, comp.item_id);
   }
 
@@ -576,10 +710,117 @@
     });
   }
 
+  function shortPinLabel(from) {
+    if (!from) return '?';
+    const m = from.match(/\b(5V|VCC|VIN|3V3|GND|D\d{1,2}|A\d|SDA|SCL|TX|RX|MOSI|MISO|SCK|CS)\b/i);
+    if (m) return m[0].toUpperCase();
+    return (from.split(/[\s(]/)[0] || '?').slice(0, 6);
+  }
+
+  function pickArrivalColor(label) {
+    if (/^(5V|VCC|VIN|3V3)/i.test(label)) return '#dc2626';
+    if (/^GND/i.test(label)) return '#1f2937';
+    if (/^D\d/i.test(label)) return '#1d4ed8';
+    if (/^A\d/i.test(label)) return '#7c3aed';
+    return '#6b7280';
+  }
+
+  function isArrivalFromTop(pos) {
+    if (pos.isRail) return pos.y < (rowY('A') + rowY('J')) / 2;
+    return 'ABCDE'.includes(pos.row);
+  }
+
+  function drawArrival(svg, ctx, e, topEdgeY, botEdgeY) {
+    if (!e.to) return false;
+    const pos = resolvePos(e.to);
+    if (!pos) return false;
+
+    const fromTop = isArrivalFromTop(pos);
+    const label = shortPinLabel(e.from);
+    const color = pickArrivalColor(label);
+
+    const g = el('g', { class: 'bb-arrival' }, ctx.overlayLayer);
+
+    let yStart, yEnd, labelY, dir;
+    if (fromTop) {
+      yStart = topEdgeY + 10;
+      yEnd = pos.y - 4;
+      labelY = topEdgeY + 6;
+      dir = 1;
+    } else {
+      yStart = botEdgeY - 10;
+      yEnd = pos.y + 4;
+      labelY = botEdgeY - 1;
+      dir = -1;
+    }
+
+    // Dashed feed wire from board edge to the hole, so it's clearly an
+    // "incoming from off-board" wire and not confused with a real jumper.
+    el('line', {
+      x1: pos.x, y1: yStart, x2: pos.x, y2: yEnd,
+      stroke: color, 'stroke-width': 1.4, 'stroke-linecap': 'round',
+      'stroke-dasharray': '3,2',
+    }, g);
+
+    // Solid arrowhead at the hole end
+    const tx = pos.x, ty = yEnd;
+    el('path', {
+      d: `M ${tx} ${ty} L ${tx - 3} ${ty - dir * 5} L ${tx + 3} ${ty - dir * 5} z`,
+      fill: color,
+    }, g);
+
+    // Pill label at the edge
+    const padX = 3, padY = 1;
+    const txt = el('text', {
+      x: pos.x, y: labelY,
+      'font-size': 8, 'font-family': 'monospace', 'font-weight': 'bold',
+      fill: '#fff', 'text-anchor': 'middle',
+    }, g);
+    txt.textContent = label;
+    // Measure-free pill: width based on label length
+    const pillW = Math.max(label.length * 5 + padX * 2, 14);
+    const pillH = 10;
+    const px = pos.x - pillW / 2;
+    const py = labelY - pillH + 2;
+    const pill = el('rect', {
+      x: px, y: py, width: pillW, height: pillH,
+      rx: 2, fill: color,
+    }, g);
+    // Move pill behind the text
+    g.insertBefore(pill, txt);
+
+    bindNodes(ctx, g, pos);
+    attachHover(g, ctx, e.item_id);
+    return { fromTop };
+  }
+
   function drawExternals(svg, ctx, externals) {
     if (!externals || !externals.length) return;
     const W = totalWidth();
-    let y = rowY('+5V_B') + 24;
+
+    // First pass: draw an arrival arrow + pin badge on the board for every
+    // external whose "to" parses as a board hole or rail. This makes the
+    // Arduino-side connections visible instead of hidden in the text list.
+    const TOP_EDGE_Y = -22;
+    const BOT_EDGE_Y = rowY('+5V_B') + 24;
+    let needTop = false, needBot = false;
+    externals.forEach(e => {
+      const res = drawArrival(svg, ctx, e, TOP_EDGE_Y, BOT_EDGE_Y);
+      if (res && res.fromTop) needTop = true;
+      else if (res) needBot = true;
+    });
+
+    // Make room above/below for the arrival graphics.
+    const vb = svg.getAttribute('viewBox').split(' ').map(Number);
+    if (needTop) {
+      const shift = Math.abs(TOP_EDGE_Y) + 6;
+      vb[1] -= shift;
+      vb[3] += shift;
+    }
+
+    // Push the text list down past any bottom arrivals.
+    const botExtra = needBot ? (BOT_EDGE_Y - rowY('+5V_B')) + 4 : 0;
+    let y = rowY('+5V_B') + 24 + botExtra;
     el('text', { x: PAD_X, y, 'font-size': 10, 'font-family': 'system-ui, sans-serif', fill: '#1f2937', 'font-weight': 'bold' }, ctx.overlayLayer).textContent = 'Off-board:';
     y += 13;
     externals.forEach(e => {
@@ -591,8 +832,7 @@
       attachHover(g, ctx, e.item_id);
       y += 13;
     });
-    const vb = svg.getAttribute('viewBox').split(' ').map(Number);
-    vb[3] = Math.max(vb[3], y + 8);
+    vb[3] = Math.max(vb[3], (y + 8) - vb[1]);
     svg.setAttribute('viewBox', vb.join(' '));
   }
 

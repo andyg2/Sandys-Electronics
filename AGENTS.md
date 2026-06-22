@@ -153,6 +153,52 @@ So wiring pin 4 to +5V means a wire from any A-D in col 8 to the +5V rail.
 - Skip when the project is just an MCU + WiFi with no breadboard parts (e.g., the XIAO chip-temperature web page).
 - Don't try to draw projects that need a perfboard / proto PCB / soldering. The DSL doesn't render those, and that audience is out of scope anyway.
 
+### Validating a layout (`validate_breadboard.php`)
+
+`inventory/validate_breadboard.php` mirrors the renderer geometry exactly. It catches three classes of bug that don't show up by eye until the SVG renders:
+
+| Check            | What it flags                                                                                                                                  |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `body_overlap`   | Two component bodies (resistor / cap / IC / module / button / pot / transistor / LED) whose axis-aligned bounding boxes intersect on the SVG.  |
+| `hole_conflict`  | Two component legs that need the same physical breadboard hole. Real-world: only one lead fits per hole. Move one leg to a different row.      |
+| `gully_crossing` | A non-IC component (resistor / cap / LED / wire) with one leg in rows A-E and the other in F-J of the **same column** - separate nodes, no connection. |
+
+Use it three ways:
+
+```bash
+# Validate a stored project from the DB
+php inventory/validate_breadboard.php 69
+
+# Audit the whole corpus
+php inventory/validate_breadboard.php --all
+
+# Validate a layout JSON via stdin (handy from a workflow agent)
+cat proposed_layout.json | php inventory/validate_breadboard.php --json --format=json
+```
+
+Add `--fix` to greedy hill-climb a repair: at each step the tool tries every alternative row (within the same column-half, so the circuit is unchanged) for every leg of every component currently involved in an issue and picks the single swap that drops the issue count the most. Add `--apply` to write the cleaned layout back to the DB:
+
+```bash
+php inventory/validate_breadboard.php --fix 69          # dry-run, show proposed moves
+php inventory/validate_breadboard.php --apply --all     # fix every project and write back
+```
+
+This is the fastest way to clean up most layout collisions because rows A-E share an electrical node and so do F-J - moving a leg between them is electrically free. ~80% of corpus issues evaporate from this alone; what remains usually needs a structural change (different column, fewer components, or a wire bridge).
+
+JSON output mode (`--format=json`) returns `{ "issues": [...], "ok": true|false }` and exits non-zero if any issue is found, so a workflow agent can iterate until it's clean:
+
+```js
+const proposed = JSON.stringify(layout);
+const out = require('child_process').execSync(
+  'php inventory/validate_breadboard.php --json --format=json',
+  { input: proposed }
+).toString();
+const { issues, ok } = JSON.parse(out);
+if (!ok) /* feed issues back to the agent and ask it to fix */;
+```
+
+**Rule of thumb when authoring a new layout:** keep component bodies in rows D/E (top half) and F/G (bottom half) so they cluster around the gully, route rail wires from rows A and J, and never let two leg positions collide. `validate_breadboard.php` flags the rest.
+
 ## Mermaid wiring diagram conventions
 
 - Use `flowchart` syntax (`LR` or `TD`). Group the MCU as a subgraph; group the breadboard as a subgraph if there is significant on-breadboard wiring.

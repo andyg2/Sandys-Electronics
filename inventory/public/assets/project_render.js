@@ -18,6 +18,8 @@
     convertMermaidCodeBlocks();
     applySyntaxHighlight();
     document.querySelectorAll('pre').forEach(addCopyButton);
+    addMarkdownHeadingIds();
+    buildSectionNav();
     await runMermaid();
   });
 
@@ -96,6 +98,75 @@
       btn.textContent = original;
       btn.classList.remove(addClass);
     }, 1500);
+  }
+
+  function slugify(s) {
+    return (s || '').toLowerCase().trim()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '') || 'section';
+  }
+
+  // Stamp every h2/h3 inside the rendered markdown with an id so the in-page
+  // nav can jump straight to it. Disambiguate duplicates with -2, -3, ...
+  function addMarkdownHeadingIds() {
+    const container = document.getElementById('md-rendered');
+    if (!container) return;
+    const seen = Object.create(null);
+    container.querySelectorAll('h2, h3').forEach(h => {
+      if (h.id) return;
+      const base = 'md-' + slugify(h.textContent);
+      let id = base, n = 1;
+      while (seen[id]) id = base + '-' + (++n);
+      seen[id] = true;
+      h.id = id;
+    });
+  }
+
+  // Build the "On this page" chip strip between Tags and the power-supply panel.
+  // Order: markdown h2's (in document order, which means they sit inside the
+  // description card and come first), then the top-level cards in the order
+  // they appear in the DOM.
+  function buildSectionNav() {
+    const nav  = document.getElementById('project-nav');
+    const list = document.getElementById('project-nav-links');
+    if (!nav || !list) return;
+
+    const items = [];
+    const seenIds = Object.create(null);
+
+    // Walk the DOM in order so the nav reads top-to-bottom of the page.
+    const candidates = document.querySelectorAll(
+      '#md-rendered h2, [data-project-section]'
+    );
+    candidates.forEach(el => {
+      let id, label;
+      if (el.matches('[data-project-section]')) {
+        id = el.id;
+        label = el.dataset.projectSection;
+      } else {
+        id = el.id;
+        label = (el.textContent || '').trim();
+      }
+      if (!id || !label || seenIds[id]) return;
+      seenIds[id] = true;
+      items.push({ id, label });
+    });
+
+    if (!items.length) return;
+
+    list.innerHTML = '';
+    items.forEach(({ id, label }) => {
+      const a = document.createElement('a');
+      a.href = '#' + id;
+      a.textContent = label;
+      a.className = 'inline-block px-2 py-0.5 rounded-full text-xs ' +
+                    'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 ' +
+                    'hover:bg-blue-100 dark:hover:bg-blue-900/40 ' +
+                    'hover:text-blue-700 dark:hover:text-blue-300 ' +
+                    'no-underline transition-colors';
+      list.appendChild(a);
+    });
+    nav.classList.remove('hidden');
   }
 
   async function runMermaid() {

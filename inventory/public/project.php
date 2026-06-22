@@ -110,6 +110,11 @@ include SRC_DIR . '/header.php';
   </div>
 </div>
 
+<nav id="project-nav" class="mb-6 hidden">
+  <div class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400 font-semibold mb-1.5">On this page</div>
+  <div id="project-nav-links" class="flex flex-wrap gap-1.5"></div>
+</nav>
+
 <?php if (!empty($project['power_supply'])): ?>
 <div class="mb-6 flex items-start gap-3 px-4 py-3 rounded-md bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700/50">
   <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-amber-200 dark:bg-amber-800 text-amber-900 dark:text-amber-100 font-bold mt-0.5" aria-hidden="true">P</span>
@@ -135,7 +140,7 @@ include SRC_DIR . '/header.php';
 <?php endif ?>
 
 <?php if ($project['wiring_diagram']): ?>
-<div class="card mb-6">
+<div class="card mb-6" id="section-wiring-diagram" data-project-section="Wiring diagram">
   <div class="card-body">
     <h2 class="text-lg font-semibold mb-3 mt-0">Wiring diagram</h2>
     <div class="bg-white dark:bg-gray-100 rounded border border-gray-100 dark:border-gray-700 p-4 overflow-x-auto">
@@ -158,7 +163,7 @@ include SRC_DIR . '/header.php';
       ];
   }
 ?>
-<div class="card mb-6">
+<div class="card mb-6" id="section-breadboard-layout" data-project-section="Breadboard layout">
   <div class="card-body">
     <h2 class="text-lg font-semibold mb-3 mt-0">Breadboard layout</h2>
     <div class="bg-white dark:bg-gray-100 rounded border border-gray-100 dark:border-gray-700 p-2 sm:p-4 overflow-x-auto">
@@ -173,7 +178,7 @@ include SRC_DIR . '/header.php';
 <?php endif ?>
 
 <?php if ($project['code']): ?>
-<div class="card mb-6">
+<div class="card mb-6" id="section-code" data-project-section="Code">
   <div class="card-body">
     <h2 class="text-lg font-semibold mb-3 mt-0 flex items-center gap-2">
       Code
@@ -184,7 +189,7 @@ include SRC_DIR . '/header.php';
 </div>
 <?php endif ?>
 
-<div class="card mb-6">
+<div class="card mb-6" id="section-allocated-parts" data-project-section="Allocated parts">
   <div class="card-body">
     <h2 class="text-lg font-semibold mb-3 m-0">Allocated parts</h2>
     <?php if ($allocations): ?>
@@ -249,7 +254,7 @@ include SRC_DIR . '/header.php';
     mermaid.initialize({ startOnLoad: false, theme: 'default', securityLevel: 'loose' });
   }
 </script>
-<script src="/assets/breadboard.js?v=7"></script>
-<script src="/assets/project_render.js?v=2"></script>
+<script src="/assets/breadboard.js?v=10"></script>
+<script src="/assets/project_render.js?v=3"></script>
 
 <?php include SRC_DIR . '/footer.php';

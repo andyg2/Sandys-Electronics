@@ -40,6 +40,19 @@ const DSL_GUIDE = [
   '- wire: { type:"wire", from, to, color? }',
   '    Colour convention: red ("#ef4444") for +V power, dark ("#1f2937") for GND, yellow ("#f59e0b")',
   '    for signal jumpers, sky-blue ("#0ea5e9") for short data hops.',
+  '    CRITICAL: never emit a wire between two holes that are already on the SAME ELECTRICAL NODE.',
+  '    The breadboard\'s internal copper strip already connects them, so the jumper is redundant',
+  '    visual clutter that wastes an allocated jumper. A wire is redundant if:',
+  '      - both endpoints are in the same column AND same half (e.g. A5 -> E5, B12 -> C12)',
+  '      - both endpoints are on the same rail (e.g. GND_T -> GND_T@21, or +5V_B -> +5V_B)',
+  '    Valid wires bridge DIFFERENT nodes: across columns (A5 -> A8), across the gully (E12 -> F12),',
+  '    or from a hole to a rail (B4 -> GND_T).',
+  '    SHORTEST PATH RULE for rail wires: a wire that connects a rail to a grid hole must use the',
+  '    row CLOSEST to that rail in the relevant column-half. The top rails (+5V_T / GND_T) are',
+  '    closest to row A, so a wire to a top rail should land in row A by default. The bottom rails',
+  '    (+5V_B / GND_B) are closest to row J, so a wire to a bottom rail should land in row J.',
+  '    Only fall back inward (B/I, then C/H, etc.) if the closer row is already occupied by another',
+  '    component\'s leg. Never run a long diagonal wire from a far row when a closer free row exists.',
   '',
   '- button: { type:"button", at, label? }',
   '    4-pin tactile. `at` is the TOP-LEFT pin. The other 3 pins auto-render at +2 cols across and 2',
@@ -160,7 +173,20 @@ const results = await parallel(PROJECTS.map(p => () => agent(
   '- LED current-limiting resistors actually allocated AND drawn in series.\n' +
   '- Cap legs do not share columns with IC bodies.\n' +
   '- All wires have colours per the convention (red/dark/yellow/sky-blue).\n' +
-  '- Component placement spread across ~15-25 columns.',
+  '- Component placement spread across ~15-25 columns.\n\n' +
+  'VALIDATION (mandatory before returning):\n' +
+  '  1. Save your proposed layout JSON to /tmp/bb_layout_' + p.id + '.json with the Write tool\n' +
+  '     (just the layout object: {"components":[...],"external":[...]}).\n' +
+  '  2. Run via Bash:\n' +
+  '     php C:/Users/Andy/Edge-Devices/inventory/validate_breadboard.php --fix --format=json --json < /tmp/bb_layout_' + p.id + '.json\n' +
+  '     The validator returns {before, after, moves, remaining_issues, layout}. It auto-fixes minor\n' +
+  '     row collisions via brute force; `layout` is the cleaned version.\n' +
+  '  3. If after === 0: return that cleaned `layout` field as your output.\n' +
+  '  4. If after > 0: read the `remaining_issues` and REVISE structurally (different columns,\n' +
+  '     delete duplicate wires, move resistor or cap bodies out of an IC footprint, etc.). Save\n' +
+  '     the revision, validate again. Up to 4 attempts.\n' +
+  '  5. The validator handles row swaps for you. Do not waste time micro-tuning rows; focus on\n' +
+  '     column placement and component count.',
   { label: 'layout:' + p.name.slice(0, 30), phase: 'Layout', schema: SCHEMA }
 )))
 
